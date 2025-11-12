@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy & Terms of Service — Quantum Cube Game</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#7dd3fc;color-scheme: dark;} 
+    body{font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: linear-gradient(180deg,#071124 0%, #071a2a 100%); color:#e6eef6; margin:0; padding:32px;}
+    .container{max-width:900px;margin:0 auto;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6);} 
+    h1{font-size:20px;margin:0 0 6px;color:#ffffff}
+    .meta{color:var(--muted);font-size:13px;margin-bottom:18px}
+    nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+    a.btn{background:rgba(125,211,252,0.08);padding:8px 12px;border-radius:8px;color:var(--accent);text-decoration:none;font-weight:600;font-size:13px}
+    section{margin-top:18px;padding-top:18px;border-top:1px dashed rgba(255,255,255,0.03)}
+    h2{font-size:18px;margin:0 0 10px}
+    p, li, pre{color:var(--muted);line-height:1.6}
+    pre{white-space:pre-wrap;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;color:var(--muted);}
+    ul{padding-left:18px}
+    .lang-row{display:flex;gap:8px;margin-top:8px}
+    footer{margin-top:26px;color:var(--muted);font-size:13px}
+    .badge{font-size:12px;padding:6px 8px;background:rgba(255,255,255,0.02);border-radius:6px}
+    @media (max-width:600px){body{padding:18px}.container{padding:18px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy & Terms of Service</h1>
+    <div class="meta">For: <strong>Quantum Cube Game</strong> • Last Updated: <strong>2025-11-12</strong></div>
+
+    <nav>
+      <a class="btn" href="#privacy-en">Privacy Policy (EN)</a>
+      <a class="btn" href="#terms-en">Terms of Service (EN)</a>
+      <a class="btn" href="#privacy-hi">गोपनीयता नीति (HI)</a>
+      <a class="btn" href="#terms-hi">सेवा की शर्तें (HI)</a>
+    </nav>
+
+    <!-- English Privacy Policy -->
+    <section id="privacy-en">
+      <h2>Privacy Policy — English</h2>
+      <p><strong>Last Updated:</strong> 2025-11-12</p>
+
+      <p>This Privacy Policy explains how Quantum Cube Game handles information. The game is designed to operate offline and does not collect personal information from users.</p>
+
+      <h3>1. INFORMATION WE COLLECT</h3>
+      <p>We do not collect any personal information from users of Quantum Cube Game. The game operates entirely offline and does not require any personal data.</p>
+
+      <h3>2. DATA USAGE</h3>
+      <ul>
+        <li>Game progress and scores are stored locally on your device.</li>
+        <li>No data is transmitted to external servers.</li>
+        <li>No third-party advertising or analytics are included.</li>
+      </ul>
+
+      <h3>3. PERMISSIONS</h3>
+      <p>Quantum Cube does not require any special permissions to function.</p>
+
+      <h3>4. CHILDREN'S PRIVACY</h3>
+      <p>Our game is suitable for all ages and does not collect any personal information from children.</p>
+
+      <h3>5. CONTACT US</h3>
+      <p>If you have questions about this Privacy Policy, please contact us at:
+      <br><a href="https://www.instagram.com/dev.drx/" target="_blank" rel="noopener">https://www.instagram.com/dev.drx/</a></p>
+
+      <p>We reserve the right to update this policy as needed.</p>
+    </section>
+
+    <!-- English Terms of Service -->
+    <section id="terms-en">
+      <h2>Terms of Service — English</h2>
+      <p><strong>Last Updated:</strong> 2025-11-12</p>
+
+      <h3>1. ACCEPTANCE OF TERMS</h3>
+      <p>By playing Quantum Cube Game, you agree to these Terms of Service.</p>
+
+      <h3>2. GAME LICENSE</h3>
+      <p>We grant you a limited, non-exclusive license to play Quantum Cube for personal entertainment.</p>
+
+      <h3>3. USER RESPONSIBILITIES</h3>
+      <ul>
+        <li>Play fairly and do not attempt to cheat.</li>
+        <li>Do not modify or reverse engineer the game.</li>
+        <li>Respect other players (in future multiplayer features).</li>
+      </ul>
+
+      <h3>4. INTELLECTUAL PROPERTY</h3>
+      <p>All game content, including graphics, code, and design, is owned by the developers.</p>
+
+      <h3>5. LIMITATION OF LIABILITY</h3>
+      <p>The game is provided "as is" without warranties. We are not liable for any device issues.</p>
+
+      <h3>6. TERMINATION</h3>
+      <p>We reserve the right to terminate access to the game for violation of these terms.</p>
+
+      <h3>7. CHANGES TO TERMS</h3>
+      <p>We may update these terms periodically. Continued use constitutes acceptance.</p>
+
+      <h3>8. CONTACT</h3>
+      <p>For questions: <a href="mailto:devd7221@gmail.com">https://www.instagram.com/drx.dev</a></p>
+    </section>
+
+    <!-- Hindi Privacy Policy -->
+    <section id="privacy-hi">
+      <h2>गोपनीयता नीति — हिन्दी</h2>
+      <p><strong>अंतिम अपडेट:</strong> 2025-11-12</p>
+
+      <h3>1. जानकारी जो हम एकत्र करते हैं</h3>
+      <p>हम क्वांटम क्यूब गेम के उपयोगकर्ताओं से कोई व्यक्तिगत जानकारी एकत्र नहीं करते। गेम पूरी तरह से ऑफलाइन काम करता है और किसी व्यक्तिगत डेटा की आवश्यकता नहीं है।</p>
+
+      <h3>2. डेटा उपयोग</h3>
+      <ul>
+        <li>गेम प्रगति और स्कोर आपके डिवाइस पर स्थानीय रूप से संग्रहीत होते हैं।</li>
+        <li>कोई डेटा बाहरी सर्वर पर प्रसारित नहीं किया जाता है।</li>
+        <li>कोई तृतीय-पक्ष विज्ञापन या एनालिटिक्स नहीं।</li>
+      </ul>
+
+      <h3>3. अनुमतियाँ</h3>
+      <p>क्वांटम क्यूब को काम करने के लिए किसी विशेष अनुमति की आवश्यकता नहीं है।</p>
+
+      <h3>4. बच्चों की गोपनीयता</h3>
+      <p>हमारा गेम सभी उम्र के लिए उपयुक्त है और बच्चों से कोई व्यक्तिगत जानकारी एकत्र नहीं करता है।</p>
+
+      <h3>5. हमसे संपर्क करें</h3>
+      <p>यदि आपके पास इस गोपनीयता नीति के बारे में कोई प्रश्न हैं, तो कृपया हमसे संपर्क करें:
+      <br><a href="https://www.instagram.com/dev.drx/" target="_blank" rel="noopener">https://www.instagram.com/dev.drx/</a></p>
+
+      <p>हम आवश्यकतानुसार इस नीति को अपडेट करने का अधिकार सुरक्षित रखते हैं।</p>
+    </section>
+
+    <!-- Hindi Terms of Service -->
+    <section id="terms-hi">
+      <h2>सेवा की शर्तें — हिन्दी</h2>
+      <p><strong>अंतिम अपडेट:</strong> 2025-11-12</p>
+
+      <h3>1. शर्तों की स्वीकृति</h3>
+      <p>क्वांटम क्यूब गेम खेलकर, आप इन सेवा की शर्तों से सहमत होते हैं।</p>
+
+      <h3>2. गेम लाइसेंस</h3>
+      <p>हम आपको व्यक्तिगत मनोरंजन के लिए क्वांटम क्यूब खेलने के लिए एक सीमित, गैर-विशिष्ट लाइसेंस प्रदान करते हैं।</p>
+
+      <h3>3. उपयोगकर्ता जिम्मेदारियाँ</h3>
+      <ul>
+        <li>निष्पक्ष रूप से खेलें और धोखा देने का प्रयास न करें।</li>
+        <li>गेम को संशोधित या रिवर्स इंजीनियर न करें।</li>
+        <li>अन्य खिलाड़ियों का सम्मान करें (भविष्य की मल्टीप्लेयर सुविधाओं में)।</li>
+      </ul>
+
+      <h3>4. बौद्धिक संपदा</h3>
+      <p>सभी गेम सामग्री, जिसमें ग्राफिक्स, कोड और डिज़ाइन शामिल हैं, डेवलपर्स के स्वामित्व में है।</p>
+
+      <h3>5. दायित्व की सीमा</h3>
+      <p>गेम "जैसा है" वैसा ही प्रदान किया जाता है बिना किसी वारंटी के। हम किसी भी डिवाइस समस्या के लिए उत्तरदायी नहीं हैं।</p>
+
+      <h3>6. समाप्ति</h3>
+      <p>हम इन शर्तों के उल्लंघन के लिए गेम तक पहुंच समाप्त करने का अधिकार सुरक्षित रखते हैं।</p>
+
+      <h3>7. शर्तों में परिवर्तन</h3>
+      <p>हम समय-समय पर इन शर्तों को अपडेट कर सकते हैं। निरंतर उपयोग स्वीकृति का गठन करता है।</p>
+
+      <h3>8. संपर्क</h3>
+      <p>प्रश्नों के लिए: <a href="mailto:https://www.instagram.com/drx.dev">https://www.instagram.com/drx.dev</a></p>
+    </section>
+
+    <footer>
+      <div class="lang-row">
+        <span class="badge">Generated from LanguageService localization</span>
+        <span style="flex:1"></span>
+        <span class="badge">© 2025 Quantum Cube</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
