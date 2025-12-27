@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SelectedCV - Terms & Conditions</title>
+    <title>Edvora - संपूर्ण शिक्षा रोडमैप</title>
     <style>
         * {
             margin: 0;
@@ -12,247 +13,651 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
             padding: 20px;
-            background-color: #f8f9fa;
+            color: #333;
         }
-        .container {
+        .a4-container {
+            width: 21cm;
+            height: 29.7cm;
             background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
         }
         .header {
+            background: linear-gradient(135deg, #00C896 0%, #00E6A8 100%);
+            padding: 20px 30px;
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e9ecef;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        .logo {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #2563eb;
-            margin-bottom: 10px;
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: 700;
         }
-        .subtitle {
-            color: #6b7280;
-            font-size: 1.1em;
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
         }
-        h1 {
-            color: #1f2937;
-            margin: 25px 0 15px 0;
-            font-size: 1.8em;
+        .flowchart-container {
+            padding: 25px;
+            height: calc(100% - 100px);
+            overflow-y: auto;
         }
-        h2 {
-            color: #374151;
-            margin: 20px 0 12px 0;
-            font-size: 1.3em;
+        .phase {
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
+        .phase-header {
+            padding: 12px 20px;
+            font-weight: 700;
+            font-size: 18px;
+            color: white;
         }
-        ul {
-            margin: 15px 0;
-            padding-left: 25px;
+        .phase-content {
+            padding: 20px;
+            background: white;
         }
-        li {
+        .stream-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .stream-card {
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            transition: transform 0.3s ease;
+        }
+        .stream-card:hover {
+            transform: translateY(-5px);
+        }
+        .stream-card h4 {
             margin-bottom: 8px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
         }
-        .highlight {
-            background-color: #fff3cd;
-            padding: 15px;
-            border-left: 4px solid #ffc107;
-            margin: 15px 0;
-            border-radius: 4px;
+        .stream-card h4 i {
+            margin-right: 8px;
+            font-size: 18px;
         }
-        .warning {
-            background-color: #f8d7da;
+        .stream-card p {
+            font-size: 13px;
+            color: #555;
+        }
+        .pathway {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .pathway-step {
             padding: 15px;
-            border-left: 4px solid #dc3545;
-            margin: 15px 0;
-            border-radius: 4px;
+            border-radius: 8px;
+            border-left: 4px solid;
+            background: #f9f9f9;
+            transition: all 0.3s ease;
+        }
+        .pathway-step:hover {
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+        .pathway-step h4 {
+            margin-bottom: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .pathway-step h4 i {
+            margin-right: 8px;
+        }
+        .pathway-step ul {
+            padding-left: 20px;
+            font-size: 13px;
+            color: #555;
+        }
+        .pathway-step li {
+            margin-bottom: 5px;
+        }
+        .career-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .career-card {
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+        .career-card:hover {
+            transform: translateY(-5px);
+        }
+        .career-card h4 {
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-align: center;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .career-card h4 i {
+            margin-right: 8px;
+        }
+        .career-card ul {
+            padding-left: 15px;
+            font-size: 12px;
+            color: #555;
+        }
+        .career-card li {
+            margin-bottom: 5px;
+        }
+        .guidance-section {
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .guidance-section h3 {
+            margin-bottom: 15px;
+            color: #0a66cc;
+            text-align: center;
+        }
+        .guidance-points {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .guidance-points div {
+            font-size: 13px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+        }
+        .guidance-points div i {
+            margin-right: 10px;
+            color: #00C896;
+        }
+        .connector {
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            color: #00C896;
+            font-size: 20px;
         }
         .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e9ecef;
             text-align: center;
-            color: #6b7280;
-            font-size: 0.9em;
+            padding: 15px;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
         }
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                padding: 20px;
-            }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
         }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #00C896;
+            z-index: 1;
+        }
+        .timeline-point {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        .timeline-point div {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #00C896;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #00C896;
+            font-size: 10px;
+            line-height: 1.2;
+            text-align: center;
+            padding: 8px;
+            word-break: break-word;
+        }
+        .timeline-point p {
+            font-size: 11px;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-top: 5px;
+        }
+
+        /* Color coding */
+        .science { background: #e8fdf5; border-color: #00C896; }
+        .science-header { background: linear-gradient(135deg, #00C896 0%, #00E6A8 100%); }
+        
+        .commerce { background: #eef7ff; border-color: #0a66cc; }
+        .commerce-header { background: linear-gradient(135deg, #0a66cc 0%, #4d94ff 100%); }
+        
+        .medical { background: #fff0f4; border-color: #e91e63; }
+        .medical-header { background: linear-gradient(135deg, #e91e63 0%, #f48fb1 100%); }
+        
+        .arts { background: #fffaf6; border-color: #ff9800; }
+        .arts-header { background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%); }
+        
+        .vocational { background: #f7fbff; border-color: #7e57c2; }
+        .vocational-header { background: linear-gradient(135deg, #7e57c2 0%, #b388ff 100%); }
+        
+        .agriculture { background: #f0f9eb; border-color: #4caf50; }
+        .agriculture-header { background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%); }
+        
+        .law { background: #f3e5f5; border-color: #9c27b0; }
+        .law-header { background: linear-gradient(135deg, #9c27b0 0%, #e1bee7 100%); }
+        
+        .career { background: #f4f4f6; border-color: #607d8b; }
+        .career-header { background: linear-gradient(135deg, #607d8b 0%, #90a4ae 100%); }
+        
+        .defense { background: #fff3e0; border-color: #ff6f00; }
+        .defense-header { background: linear-gradient(135deg, #ff6f00 0%, #ffb74d 100%); }
+        
+        .sports { background: #e8f5e9; border-color: #2e7d32; }
+        .sports-header { background: linear-gradient(135deg, #2e7d32 0%, #66bb6a 100%); }
+        
+        .design { background: #fce4ec; border-color: #ad1457; }
+        .design-header { background: linear-gradient(135deg, #ad1457 0%, #f48fb1 100%); }
+        
+        .hotel { background: #fff8e1; border-color: #ff8f00; }
+        .hotel-header { background: linear-gradient(135deg, #ff8f00 0%, #ffd54f 100%); }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <div class="a4-container">
         <div class="header">
-            <div class="logo">SelectedCV</div>
-            <div class="subtitle">Professional CV Maker</div>
-            <h1>Terms & Conditions</h1>
-            <p><strong>Last Updated:</strong> <span id="currentDate"></span></p>
+            <h1>एडवोरा — संपूर्ण शिक्षा एवं करियर रोडमैप</h1>
+            <p>कक्षा 5 → 12वीं के बाद का व्यापक मार्गदर्शन चार्ट</p>
         </div>
-
-        <div class="highlight">
-            <strong>Important:</strong> By accessing or using SelectedCV mobile application, you agree to be bound by these Terms & Conditions. If you disagree with any part, you must immediately discontinue using our application.
-        </div>
-
-        <h1>1. Acceptance of Terms</h1>
-        <p>SelectedCV ("we," "our," or "us") provides a mobile application for creating professional CVs and resumes. By installing, accessing, or using the SelectedCV application, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
-
-        <h1>2. Service Description</h1>
-        <p>SelectedCV is a CV/resume creation tool that provides:</p>
-        <ul>
-            <li>Professional CV templates and designs</li>
-            <li>CV building and editing tools</li>
-            <li>Cloud storage for your resumes</li>
-            <li>PDF export functionality</li>
-            <li>Premium subscription features</li>
-        </ul>
-        <p>We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time without prior notice.</p>
-
-        <h1>3. User Accounts and Registration</h1>
-        <p>To access certain features, you may need to register for an account. You agree to:</p>
-        <ul>
-            <li>Provide accurate and complete registration information</li>
-            <li>Maintain the security of your password</li>
-            <li>Accept responsibility for all activities under your account</li>
-            <li>Notify us immediately of any unauthorized use</li>
-        </ul>
-
-        <h1>4. Subscription and Payment Terms</h1>
-        <h2>4.1 Premium Features</h2>
-        <p>SelectedCV offers premium features through subscription plans. By subscribing, you get access to:</p>
-        <ul>
-            <li>Additional professional templates</li>
-            <li>Advanced customization options</li>
-            <li>Ad-free experience</li>
-            <li>Priority support</li>
-        </ul>
-
-        <h2>4.2 Payment Processing</h2>
-        <p>All payments are processed through Google Play Store. We do not store or process your payment information directly.</p>
-
-        <div class="warning">
-            <h2>4.3 No Refund Policy</h2>
-            <p><strong>ALL PURCHASES AND SUBSCRIPTIONS ARE FINAL AND NON-REFUNDABLE.</strong> We do not provide refunds for any subscription payments, including but not limited to:</p>
-            <ul>
-                <li>Monthly or yearly subscription fees</li>
-                <li>Accidental purchases</li>
-                <li>Unused subscription periods</li>
-                <li>Dissatisfaction with service</li>
-                <li>Technical issues that are resolved</li>
-            </ul>
-            <p>By making a purchase, you explicitly acknowledge and agree to this no-refund policy. You may cancel your subscription at any time through Google Play Store settings, but no refunds will be provided for the current billing period.</p>
-        </div>
-
-        <h2>4.4 Subscription Renewal</h2>
-        <p>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current period. You can manage cancellations through your Google Play Store account settings.</p>
-
-        <h1>5. User Content and Responsibilities</h1>
-        <h2>5.1 Content Ownership</h2>
-        <p>You retain all rights to the content you create using SelectedCV. However, you grant us a license to store, process, and display your content solely for providing the Service.</p>
-
-        <h2>5.2 User Responsibilities</h2>
-        <p>You are solely responsible for:</p>
-        <ul>
-            <li>The accuracy and truthfulness of your CV content</li>
-            <li>Ensuring your content does not violate any laws or third-party rights</li>
-            <li>Maintaining appropriate backups of your important data</li>
-            <li>Using the Service in compliance with all applicable laws</li>
-        </ul>
-
-        <div class="highlight">
-            <h2>5.3 Prohibited Content</h2>
-            <p>You agree not to create, upload, or share content that:</p>
-            <ul>
-                <li>Contains abusive, offensive, or inappropriate language</li>
-                <li>Is false, misleading, or fraudulent</li>
-                <li>Violates intellectual property rights</li>
-                <li>Contains malicious code or viruses</li>
-                <li>Promotes illegal activities</li>
-                <li>Harasses, threatens, or discriminates against others</li>
-            </ul>
-            <p><strong>We are not responsible for monitoring user content</strong> and disclaim all liability for content created by users.</p>
-        </div>
-
-        <h1>6. Disclaimer of Warranties</h1>
-        <p>The Service is provided "as is" and "as available" without warranties of any kind, either express or implied. We do not warrant that:</p>
-        <ul>
-            <li>The Service will be uninterrupted or error-free</li>
-            <li>The results obtained from using the Service will be effective or reliable</li>
-            <li>The quality of the Service will meet your expectations</li>
-        </ul>
-
-        <h1>7. Limitation of Liability</h1>
-        <div class="warning">
-            <p><strong>To the fullest extent permitted by law, SelectedCV shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</strong></p>
-            <ul>
-                <li>Loss of profits, data, or business opportunities</li>
-                <li>Employment decisions made based on CVs created with our Service</li>
-                <li>Technical issues, data loss, or service interruptions</li>
-                <li>Any damages resulting from use or inability to use the Service</li>
-                <li>Third-party actions or content</li>
-            </ul>
-            <p>Our total liability shall not exceed the amount you paid to us in the last 6 months.</p>
-        </div>
-
-        <h1>8. Data and Privacy</h1>
-        <p>Your use of the Service is also governed by our Privacy Policy. We implement reasonable security measures, but cannot guarantee absolute data security.</p>
-
-        <div class="highlight">
-            <h2>8.1 Data Loss Disclaimer</h2>
-            <p><strong>We are not responsible for any data loss</strong> that may occur due to:</p>
-            <ul>
-                <li>Technical failures or system errors</li>
-                <li>User error or accidental deletion</li>
-                <li>Third-party service interruptions</li>
-                <li>Security breaches beyond our reasonable control</li>
-                <li>Service modifications or discontinuation</li>
-            </ul>
-            <p>Users are advised to maintain their own backups of important CV data.</p>
-        </div>
-
-        <h1>9. Termination</h1>
-        <p>We may suspend or terminate your access to the Service at any time for violation of these Terms or for any other reason. Upon termination, your right to use the Service will immediately cease.</p>
-
-        <h1>10. Changes to Terms</h1>
-        <p>We reserve the right to modify these Terms at any time. We will notify users of material changes. Continued use of the Service after changes constitutes acceptance of the modified Terms.</p>
-
-        <h1>11. Governing Law</h1>
-        <p>These Terms shall be governed by the laws of India, without regard to its conflict of law provisions.</p>
-
-        <h1>12. Contact Information</h1>
-        <p>For questions about these Terms, please contact us:</p>
-        <ul>
-            <li>Email: cvbhayya@gmail.com</li>
-            <li>Response Time: 2-3 business days</li>
-        </ul>
-
-        <div class="footer">
-            <p>&copy; <span id="currentYear"></span> SelectedCV. All rights reserved.</p>
-            <p>Professional CV Maker Application</p>
+        
+        <div class="flowchart-container">
+            <!-- Education Timeline -->
+            <div class="phase">
+                <div class="phase-header" style="background: linear-gradient(135deg, #00C896 0%, #00E6A8 100%);">
+                    शिक्षा समयरेखा
+                </div>
+                <div class="phase-content">
+                    <div class="timeline">
+                        <div class="timeline-point">
+                            <div>कक्षा 5</div>
+                            <p>प्रारंभिक<br>शिक्षा</p>
+                        </div>
+                        <div class="timeline-point">
+                            <div>कक्षा<br>6-10</div>
+                            <p>माध्यमिक<br>शिक्षा</p>
+                        </div>
+                        <div class="timeline-point">
+                            <div>कक्षा<br>11</div>
+                            <p>विषय<br>चयन</p>
+                        </div>
+                        <div class="timeline-point">
+                            <div>कक्षा<br>12</div>
+                            <p>बोर्ड<br>परीक्षा</p>
+                        </div>
+                        <div class="timeline-point">
+                            <div>स्नातक</div>
+                            <p>उच्च<br>शिक्षा</p>
+                        </div>
+                        <div class="timeline-point">
+                            <div>स्नातकोत्तर</div>
+                            <p>विशेषज्ञता</p>
+                        </div>
+                        <div class="timeline-point">
+                            <div>करियर</div>
+                            <p>पेशेवर<br>जीवन</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Foundation Phase -->
+            <div class="phase">
+                <div class="phase-header science-header">आधार चरण (कक्षा 5-10)</div>
+                <div class="phase-content">
+                    <p>गणित, विज्ञान, भाषाओं, सामाजिक विज्ञान और कलाओं में मजबूत आधार बनाएं। महत्वपूर्ण सोच और समस्या-समाधान कौशल विकसित करें।</p>
+                    <div class="connector">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stream Selection -->
+            <div class="phase">
+                <div class="phase-header" style="background: linear-gradient(135deg, #FFD166 0%, #FFB84D 100%); color: #333;">
+                    विषय चयन (कक्षा 11)
+                </div>
+                <div class="phase-content">
+                    <p>रुचि, योग्यता और करियर लक्ष्यों के आधार पर एक विशेषज्ञता पथ चुनें:</p>
+                    <div class="stream-options">
+                        <div class="stream-card science">
+                            <h4><i class="fas fa-atom"></i> विज्ञान (PCM)</h4>
+                            <p>भौतिकी, रसायन विज्ञान, गणित, कंप्यूटर विज्ञान</p>
+                        </div>
+                        <div class="stream-card medical">
+                            <h4><i class="fas fa-dna"></i> विज्ञान (PCB)</h4>
+                            <p>जीवविज्ञान, रसायन विज्ञान, भौतिकी, गणित/कंप्यूटर विज्ञान</p>
+                        </div>
+                        <div class="stream-card commerce">
+                            <h4><i class="fas fa-chart-line"></i> वाणिज्य</h4>
+                            <p>लेखाशास्त्र, अर्थशास्त्र, व्यवसाय अध्ययन, गणित</p>
+                        </div>
+                        <div class="stream-card arts">
+                            <h4><i class="fas fa-palette"></i> कला/मानविकी</h4>
+                            <p>इतिहास, राजनीति विज्ञान, भूगोल, मनोविज्ञान, भाषाएं</p>
+                        </div>
+                        <div class="stream-card agriculture">
+                            <h4><i class="fas fa-tractor"></i> कृषि विज्ञान</h4>
+                            <p>कृषि विज्ञान, जीवविज्ञान, रसायन विज्ञान, गणित</p>
+                        </div>
+                        <div class="stream-card vocational">
+                            <h4><i class="fas fa-tools"></i> व्यावसायिक</h4>
+                            <p>आईटी, ऑटोमोटिव, इलेक्ट्रिकल, स्वास्थ्य सेवा, आतिथ्य व्यापार</p>
+                        </div>
+                    </div>
+                    <div class="connector">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Class 12 -->
+            <div class="phase">
+                <div class="phase-header" style="background: linear-gradient(135deg, #7C4DFF 0%, #B388FF 100%);">
+                    कक्षा 12 - स्कूल का अंतिम वर्ष
+                </div>
+                <div class="phase-content">
+                    <p>बोर्ड परीक्षाएं पूरी करें। विषय बदलने या ब्रिज कोर्स करने का विकल्प (बोर्ड नियमों के अधीन)। प्रतियोगी परीक्षाओं और उच्च शिक्षा की तैयारी करें।</p>
+                    <div class="connector">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Post-12 Pathways -->
+            <div class="phase">
+                <div class="phase-header career-header">12वीं के बाद के शिक्षा मार्ग</div>
+                <div class="phase-content">
+                    <div class="pathway">
+                        <!-- Science Pathway -->
+                        <div class="pathway-step science">
+                            <h4><i class="fas fa-laptop-code"></i> इंजीनियरिंग और प्रौद्योगिकी</h4>
+                            <ul>
+                                <li>कंप्यूटर साइंस, मैकेनिकल, सिविल, इलेक्ट्रॉनिक्स आदि में बी.टेक/बी.ई.</li>
+                                <li>गणित, भौतिकी, कंप्यूटर साइंस में बी.एससी</li>
+                                <li>बीसीए, बी.एससी आईटी, एकीकृत एम.एससी कार्यक्रम</li>
+                                <li>उच्च अध्ययन: एम.टेक, एमएस, एमबीए, शोध</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Medical Pathway -->
+                        <div class="pathway-step medical">
+                            <h4><i class="fas fa-user-md"></i> मेडिकल और लाइफ साइंसेज</h4>
+                            <ul>
+                                <li>एमबीबीएस, बीडीएस, बीएएमएस, बीएचएमएस, बीयूएमएस</li>
+                                <li>बायोटेक्नोलॉजी, माइक्रोबायोलॉजी, बायोकैमिस्ट्री में बी.एससी</li>
+                                <li>बीपीटी, बी.फार्म, बी.एससी नर्सिंग, एलाइड हेल्थ साइंसेज</li>
+                                <li>उच्च अध्ययन: एमडी, एमएस, एम.एससी, पीएचडी, विशेषज्ञता</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Commerce Pathway -->
+                        <div class="pathway-step commerce">
+                            <h4><i class="fas fa-chart-bar"></i> वाणिज्य और प्रबंधन</h4>
+                            <ul>
+                                <li>बी.कॉम, बीबीए, बीएमएस, बीबीएम</li>
+                                <li>पेशेवर पाठ्यक्रम: सीए, सीएस, सीएमए, सीएफए</li>
+                                <li>अर्थशास्त्र, वित्त, बैंकिंग और बीमा</li>
+                                <li>उच्च अध्ययन: एमबीए, एम.कॉम, एक्चुअरियल साइंस</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Arts Pathway -->
+                        <div class="pathway-step arts">
+                            <h4><i class="fas fa-monument"></i> कला, मानविकी और सामाजिक विज्ञान</h4>
+                            <ul>
+                                <li>मनोविज्ञान, समाजशास्त्र, इतिहास, राजनीति विज्ञान में बीए</li>
+                                <li>पत्रकारिता, जन संचार, डिजाइन, ललित कला</li>
+                                <li>सामाजिक कार्य, शिक्षा, भाषाएं, दर्शनशास्त्र</li>
+                                <li>उच्च अध्ययन: एमए, एम.फिल, पीएचडी, विशेष डिप्लोमा</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Agriculture Pathway -->
+                        <div class="pathway-step agriculture">
+                            <h4><i class="fas fa-seedling"></i> कृषि और वानिकी</h4>
+                            <ul>
+                                <li>बी.एससी कृषि, बागवानी, वानिकी</li>
+                                <li>बी.टेक कृषि इंजीनियरिंग, डेयरी टेक्नोलॉजी</li>
+                                <li>बी.एफ.एससी (मत्स्य विज्ञान), बी.वी.एससी (पशु चिकित्सा विज्ञान)</li>
+                                <li>उच्च अध्ययन: एम.एससी, पीएचडी, एग्रीबिजनेस में एमबीए</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Law Pathway -->
+                        <div class="pathway-step law">
+                            <h4><i class="fas fa-gavel"></i> कानून और विधिक अध्ययन</h4>
+                            <ul>
+                                <li>5-वर्षीय एकीकृत बीए/बीबीए/बी.कॉम एलएलबी</li>
+                                <li>स्नातक के बाद 3-वर्षीय एलएलबी</li>
+                                <li>विशेषज्ञता: कॉर्पोरेट, आपराधिक, संवैधानिक कानून</li>
+                                <li>उच्च अध्ययन: एलएलएम, पीएचडी, न्यायिक सेवाएं</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Design Pathway -->
+                        <div class="pathway-step design">
+                            <h4><i class="fas fa-pencil-ruler"></i> डिजाइन और ललित कला</h4>
+                            <ul>
+                                <li>फैशन, इंटीरियर, ग्राफिक, उत्पाद डिजाइन में बी.डेस</li>
+                                <li>बीएफए (बैचलर ऑफ फाइन आर्ट्स)</li>
+                                <li>बी.आर्क (आर्किटेक्चर), बी.प्लानिंग</li>
+                                <li>उच्च अध्ययन: एम.डेस, एमएफए, विशेष प्रमाणपत्र</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Hotel Management Pathway -->
+                        <div class="pathway-step hotel">
+                            <h4><i class="fas fa-utensils"></i> आतिथ्य और पर्यटन</h4>
+                            <ul>
+                                <li>बीएचएम (बैचलर ऑफ होटल मैनेजमेंट)</li>
+                                <li>आतिथ्य और होटल प्रशासन में बी.एससी</li>
+                                <li>यात्रा और पर्यटन प्रबंधन</li>
+                                <li>उच्च अध्ययन: एमएचएम, आतिथ्य में एमबीए</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Defense Pathway -->
+                        <div class="pathway-step defense">
+                            <h4><i class="fas fa-shield-alt"></i> रक्षा और सेवाएं</h4>
+                            <ul>
+                                <li>एनडीए (राष्ट्रीय रक्षा अकादमी)</li>
+                                <li>भारतीय सैन्य, नौसेना, वायु सेना अकादमियां</li>
+                                <li>अर्धसैनिक और पुलिस सेवाएं</li>
+                                <li>रक्षा संस्थानों में इंजीनियरिंग</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Sports Pathway -->
+                        <div class="pathway-step sports">
+                            <h4><i class="fas fa-running"></i> खेल और शारीरिक शिक्षा</h4>
+                            <ul>
+                                <li>बीपीएड (बैचलर ऑफ फिजिकल एजुकेशन)</li>
+                                <li>स्पोर्ट्स साइंस में बी.एससी</li>
+                                <li>खेल कोचिंग और प्रबंधन</li>
+                                <li>पेशेवर खेल करियर</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="connector">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Career Options -->
+            <div class="phase">
+                <div class="phase-header career-header">करियर और रोजगार के अवसर</div>
+                <div class="phase-content">
+                    <div class="career-options">
+                        <div class="career-card">
+                            <h4 style="color: #00C896;"><i class="fas fa-laptop-code"></i> इंजीनियरिंग और प्रौद्योगिकी</h4>
+                            <ul>
+                                <li>सॉफ्टवेयर डेवलपर</li>
+                                <li>डेटा साइंटिस्ट</li>
+                                <li>मैकेनिकल इंजीनियर</li>
+                                <li>इलेक्ट्रॉनिक्स इंजीनियर</li>
+                                <li>एआई/एमएल विशेषज्ञ</li>
+                                <li>अनुसंधान और विकास</li>
+                                <li>सरकारी इंजीनियरिंग नौकरियां</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #e91e63;"><i class="fas fa-user-md"></i> मेडिकल और लाइफ साइंसेज</h4>
+                            <ul>
+                                <li>डॉक्टर/सर्जन</li>
+                                <li>दंत चिकित्सक</li>
+                                <li>अनुसंधान वैज्ञानिक</li>
+                                <li>फार्मासिस्ट</li>
+                                <li>बायोटेक्नोलॉजिस्ट</li>
+                                <li>स्वास्थ्य सेवा प्रशासक</li>
+                                <li>सार्वजनिक स्वास्थ्य विशेषज्ञ</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #0a66cc;"><i class="fas fa-chart-bar"></i> व्यवसाय और वित्त</h4>
+                            <ul>
+                                <li>चार्टर्ड अकाउंटेंट</li>
+                                <li>वित्तीय विश्लेषक</li>
+                                <li>व्यवसाय सलाहकार</li>
+                                <li>बैंकिंग पेशेवर</li>
+                                <li>उद्यमी</li>
+                                <li>विपणन प्रबंधक</li>
+                                <li>निवेश बैंकर</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #ff9800;"><i class="fas fa-palette"></i> रचनात्मक और सेवाएं</h4>
+                            <ul>
+                                <li>पत्रकार/सामग्री निर्माता</li>
+                                <li>ग्राफिक डिजाइनर</li>
+                                <li>शिक्षक/प्रोफेसर</li>
+                                <li>मनोवैज्ञानिक/परामर्शदाता</li>
+                                <li>सामाजिक कार्यकर्ता</li>
+                                <li>सिविल सेवाएं</li>
+                                <li>आतिथ्य प्रबंधक</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #4caf50;"><i class="fas fa-tractor"></i> कृषि और पर्यावरण</h4>
+                            <ul>
+                                <li>कृषि वैज्ञानिक</li>
+                                <li>उद्यान विशेषज्ञ</li>
+                                <li>वन अधिकारी</li>
+                                <li>पर्यावरण सलाहकार</li>
+                                <li>खाद्य प्रौद्योगिकीविद</li>
+                                <li>कृषि व्यवसाय प्रबंधक</li>
+                                <li>मृदा वैज्ञानिक</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #9c27b0;"><i class="fas fa-gavel"></i> कानून और प्रशासन</h4>
+                            <ul>
+                                <li>वकील/अधिवक्ता</li>
+                                <li>कानूनी सलाहकार</li>
+                                <li>न्यायाधीश</li>
+                                <li>कॉर्पोरेट काउंसल</li>
+                                <li>सार्वजनिक अभियोजक</li>
+                                <li>कानूनी पत्रकार</li>
+                                <li>नीति विश्लेषक</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #ad1457;"><i class="fas fa-pencil-ruler"></i> डिजाइन और वास्तुकला</h4>
+                            <ul>
+                                <li>वास्तुकार</li>
+                                <li>फैशन डिजाइनर</li>
+                                <li>इंटीरियर डिजाइनर</li>
+                                <li>यूआई/यूएक्स डिजाइनर</li>
+                                <li>उत्पाद डिजाइनर</li>
+                                <li>एनिमेटर</li>
+                                <li>कला निर्देशक</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="career-card">
+                            <h4 style="color: #ff6f00;"><i class="fas fa-shield-alt"></i> रक्षा और सुरक्षा</h4>
+                            <ul>
+                                <li>सेना/नौसेना/वायु सेना अधिकारी</li>
+                                <li>पुलिस अधिकारी</li>
+                                <li>खुफिया विश्लेषक</li>
+                                <li>सुरक्षा सलाहकार</li>
+                                <li>रक्षा शोधकर्ता</li>
+                                <li>अर्धसैनिक बल</li>
+                                <li>साइबर सुरक्षा विशेषज्ञ</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Guidance Section -->
+            <div class="guidance-section">
+                <h3><i class="fas fa-lightbulb"></i> छात्रों और अभिभावकों के लिए त्वरित मार्गदर्शन</h3>
+                <div class="guidance-points">
+                    <div><i class="fas fa-search"></i> करियर जागरूकता जल्दी शुरू करें (8-10 वर्ष): योग्यता परीक्षण, इंटर्नशिप, क्लब गतिविधियां</div>
+                    <div><i class="fas fa-stream"></i> रुचि + शोध के आधार पर 11वीं का विषय चुनें (विकल्प कभी-कभी 12वीं में बदले जा सकते हैं)</div>
+                    <div><i class="fas fa-trophy"></i> प्रतियोगी परीक्षाओं (JEE/NEET/CLAT/CA/CUET) के लिए 1-2 वर्ष पहले योजना बनाएं</div>
+                    <div><i class="fas fa-tools"></i> व्यावसायिक/डिप्लोमा मार्ग रोजगार की ओर तेजी से ले जाते हैं और बाद में अध्ययन की अनुमति देते हैं</div>
+                    <div><i class="fas fa-comments"></i> बेहतर प्लेसमेंट के लिए सॉफ्ट स्किल्स, इंटर्नशिप, प्रोजेक्ट्स, कोडिंग और संचार विकसित करें</div>
+                    <div><i class="fas fa-exchange-alt"></i> मध्य-धारा परिवर्तनों के लिए, विषय पात्रता और कैच-अप योजनाओं के लिए स्कूल/बोर्ड से परामर्श करें</div>
+                    <div><i class="fas fa-blender-phone"></i> हाइब्रिड विकल्पों पर विचार करें (डेटा साइंस + बायोलॉजी, बायो-इनफॉरमैटिक्स, एडटेक)</div>
+                    <div><i class="fas fa-hands-helping"></i> अभिभावक: दबाव नहीं, अन्वेषण का समर्थन करें — करियर काउंसलिंग काफी मदद करती है</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                डिजाइन: एडवोरा — पथप्रदर्शन (एआई-अनुकूल मार्गदर्शन) • अध्ययन और करियर की योजना बनाने के लिए इस चार्ट का उपयोग करें
+            </div>
         </div>
     </div>
-
-    <script>
-        // Auto-update dates
-        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-        });
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-    </script>
 </body>
-</html>
+                                  </html>
