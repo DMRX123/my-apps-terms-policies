@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atomic Structure & Chemical Bonds</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0c2e, #1a1a3e);
+            color: #e0e0ff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%237f39fb" opacity="0.7"/><circle cx="12" cy="12" r="6" fill="%2341b8ff" opacity="0.9"/><circle cx="12" cy="12" r="2" fill="%23ffffff"/></svg>') 12 12, auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 2px solid #41b8ff;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #41b8ff, #7f39fb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(65, 184, 255, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0a0ff;
+            margin-bottom: 20px;
+        }
+
+        .language-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            background: #1a1a3e;
+            border: 1px solid #41b8ff;
+            color: #a0a0ff;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: #41b8ff;
+            color: #0c0c2e;
+            font-weight: bold;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .animation-area {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            background: rgba(10, 10, 30, 0.7);
+            border-radius: 15px;
+            border: 1px solid #41b8ff;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 30px rgba(65, 184, 255, 0.2);
+        }
+
+        .explanation {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(10, 10, 30, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #7f39fb;
+            box-shadow: 0 0 30px rgba(127, 57, 251, 0.2);
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .explanation h2 {
+            color: #7f39fb;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            border-bottom: 1px solid #7f39fb;
+            padding-bottom: 8px;
+        }
+
+        .topic {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #33335a;
+        }
+
+        .topic h3 {
+            color: #41b8ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hindi {
+            color: #ffcc70;
+            font-weight: normal;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .control-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #1a1a3e, #0c0c2e);
+            border: 1px solid #41b8ff;
+            color: #a0a0ff;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btn:hover {
+            background: #41b8ff;
+            color: #0c0c2e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(65, 184, 255, 0.4);
+        }
+
+        .control-btn.active {
+            background: #41b8ff;
+            color: #0c0c2e;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #33335a;
+            color: #a0a0ff;
+            font-size: 0.9rem;
+            margin-top: 30px;
+        }
+
+        .atom {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .nucleus {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ff416c, #ff4b2b);
+            box-shadow: 0 0 20px #ff416c;
+        }
+
+        .electron {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #41b8ff, #2a7bff);
+            box-shadow: 0 0 15px #41b8ff;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(65, 184, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        .bond-line {
+            position: absolute;
+            background: linear-gradient(90deg, #ffcc70, #ff9a00);
+            height: 3px;
+            transform-origin: 0 0;
+        }
+
+        .proton {
+            background: radial-gradient(circle, #ff416c, #ff4b2b);
+            color: white;
+        }
+
+        .neutron {
+            background: radial-gradient(circle, #7f39fb, #5a1fd9);
+            color: white;
+        }
+
+        .electron-label {
+            background: radial-gradient(circle, #41b8ff, #2a7bff);
+            color: white;
+        }
+
+        .particle-label {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        .particle-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .animation-area, .explanation {
+                min-width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-atom"></i> Atomic Structure & Chemical Bonds</h1>
+            <p class="subtitle">Interactive 3D animations explaining electrons, protons, neutrons, valence electrons, and chemical bonds</p>
+            
+            <div class="language-toggle">
+                <button class="lang-btn active" id="englishBtn">English</button>
+                <button class="lang-btn" id="hindiBtn">Hindi (हिंदी)</button>
+                <button class="lang-btn" id="mixBtn">Mix (मिश्रित)</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="animation-area" id="canvasContainer">
+                <canvas id="atomCanvas"></canvas>
+            </div>
+            
+            <div class="explanation" id="explanation">
+                <h2 id="expTitle">Atomic Structure</h2>
+                <div class="topic">
+                    <h3><i class="fas fa-circle"></i> Electrons</h3>
+                    <p id="exp1">Electrons are negatively charged subatomic particles that orbit the nucleus of an atom. They determine the chemical properties of elements and participate in bond formation.</p>
+                    <p class="hindi" id="exp1Hindi">इलेक्ट्रॉन नकारात्मक रूप से आवेशित उपपरमाण्विक कण हैं जो परमाणु के नाभिक के चारों ओर घूमते हैं। वे तत्वों के रासायनिक गुणों को निर्धारित करते हैं और बंधन निर्माण में भाग लेते हैं।</p>
+                </div>
+                
+                <div class="topic">
+                    <h3><i class="fas fa-plus-circle"></i> Protons</h3>
+                    <p id="exp2">Protons are positively charged particles in the nucleus. The number of protons defines the atomic number of an element.</p>
+                    <p class="hindi" id="exp2Hindi">प्रोटॉन नाभिक में सकारात्मक रूप से आवेशित कण हैं। प्रोटॉन की संख्या किसी तत्व की परमाणु संख्या को परिभाषित करती है।</p>
+                </div>
+                
+                <div class="topic">
+                    <h3><i class="fas fa-circle-notch"></i> Neutrons</h3>
+                    <p id="exp3">Neutrons are neutral particles in the nucleus with no electrical charge. They contribute to the mass of the atom and stabilize the nucleus.</p>
+                    <p class="hindi" id="exp3Hindi">न्यूट्रॉन नाभिक में तटस्थ कण हैं जिनका कोई विद्युत आवेश नहीं होता है। वे परमाणु के द्रव्यमान में योगदान करते हैं और नाभिक को स्थिर करते हैं।</p>
+                </div>
+                
+                <div class="topic">
+                    <h3><i class="fas fa-bolt"></i> Valence Electrons</h3>
+                    <p id="exp4">Valence electrons are the electrons in the outermost shell of an atom. They determine how atoms bond with other atoms.</p>
+                    <p class="hindi" id="exp4Hindi">संयोजकता इलेक्ट्रॉन परमाणु के सबसे बाहरी कोश में इलेक्ट्रॉन होते हैं। ये निर्धारित करते हैं कि परमाणु अन्य परमाणुओं के साथ कैसे बंधते हैं।</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="particle-container">
+            <div class="particle-label proton">
+                <span>Proton</span>
+                <span>+1 Charge</span>
+            </div>
+            <div class="particle-label neutron">
+                <span>Neutron</span>
+                <span>0 Charge</span>
+            </div>
+            <div class="particle-label electron-label">
+                <span>Electron</span>
+                <span>-1 Charge</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn active" id="atomBtn">
+                <i class="fas fa-atom"></i> Atomic Structure
+            </button>
+            <button class="control-btn" id="valenceBtn">
+                <i class="fas fa-layer-group"></i> Valence Electrons
+            </button>
+            <button class="control-btn" id="ionicBtn">
+                <i class="fas fa-exchange-alt"></i> Ionic Bond
+            </button>
+            <button class="control-btn" id="covalentBtn">
+                <i class="fas fa-link"></i> Covalent Bond
+            </button>
+            <button class="control-btn" id="transferBtn">
+                <i class="fas fa-bolt"></i> Charge Transfer
+            </button>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background: radial-gradient(circle, #ff416c, #ff4b2b);"></div>
+                <span>Proton (+ve)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: radial-gradient(circle, #7f39fb, #5a1fd9);"></div>
+                <span>Neutron (Neutral)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: radial-gradient(circle, #41b8ff, #2a7bff);"></div>
+                <span>Electron (-ve)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: linear-gradient(90deg, #ffcc70, #ff9a00);"></div>
+                <span>Chemical Bond</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>Interactive Atomic Structure & Chemical Bonds Animation | Made with HTML, CSS & JavaScript</p>
+            <p>Use the buttons to explore different concepts. Toggle between English, Hindi, or mixed explanations.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Canvas setup
+        const canvas = document.getElementById('atomCanvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('canvasContainer');
+        
+        // Set canvas dimensions
+        function resizeCanvas() {
+            canvas.width = container.clientWidth;
+            canvas.height = container.clientHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Language management
+        const englishBtn = document.getElementById('englishBtn');
+        const hindiBtn = document.getElementById('hindiBtn');
+        const mixBtn = document.getElementById('mixBtn');
+        
+        const hindiTexts = document.querySelectorAll('.hindi');
+        
+        // Default to English
+        hindiTexts.forEach(text => text.style.display = 'none');
+        
+        englishBtn.addEventListener('click', () => {
+            englishBtn.classList.add('active');
+            hindiBtn.classList.remove('active');
+            mixBtn.classList.remove('active');
+            hindiTexts.forEach(text => text.style.display = 'none');
+        });
+        
+        hindiBtn.addEventListener('click', () => {
+            hindiBtn.classList.add('active');
+            englishBtn.classList.remove('active');
+            mixBtn.classList.remove('active');
+            hindiTexts.forEach(text => text.style.display = 'block');
+            document.querySelectorAll('.explanation p:not(.hindi)').forEach(p => p.style.display = 'none');
+        });
+        
+        mixBtn.addEventListener('click', () => {
+            mixBtn.classList.add('active');
+            englishBtn.classList.remove('active');
+            hindiBtn.classList.remove('active');
+            hindiTexts.forEach(text => text.style.display = 'block');
+            document.querySelectorAll('.explanation p:not(.hindi)').forEach(p => p.style.display = 'block');
+        });
+        
+        // Animation state management
+        const atomBtn = document.getElementById('atomBtn');
+        const valenceBtn = document.getElementById('valenceBtn');
+        const ionicBtn = document.getElementById('ionicBtn');
+        const covalentBtn = document.getElementById('covalentBtn');
+        const transferBtn = document.getElementById('transferBtn');
+        
+        const expTitle = document.getElementById('expTitle');
+        const exp1 = document.getElementById('exp1');
+        const exp1Hindi = document.getElementById('exp1Hindi');
+        const exp2 = document.getElementById('exp2');
+        const exp2Hindi = document.getElementById('exp2Hindi');
+        const exp3 = document.getElementById('exp3');
+        const exp3Hindi = document.getElementById('exp3Hindi');
+        const exp4 = document.getElementById('exp4');
+        const exp4Hindi = document.getElementById('exp4Hindi');
+        
+        let animationState = 'atom';
+        const controlButtons = [atomBtn, valenceBtn, ionicBtn, covalentBtn, transferBtn];
+        
+        // Update active button
+        function setActiveButton(activeBtn) {
+            controlButtons.forEach(btn => btn.classList.remove('active'));
+            activeBtn.classList.add('active');
+        }
+        
+        // Update explanations based on animation state
+        function updateExplanations() {
+            if (animationState === 'atom') {
+                expTitle.textContent = 'Atomic Structure';
+                exp1.textContent = 'Electrons are negatively charged subatomic particles that orbit the nucleus of an atom. They determine the chemical properties of elements and participate in bond formation.';
+                exp1Hindi.textContent = 'इलेक्ट्रॉन नकारात्मक रूप से आवेशित उपपरमाण्विक कण हैं जो परमाणु के नाभिक के चारों ओर घूमते हैं। वे तत्वों के रासायनिक गुणों को निर्धारित करते हैं और बंधन निर्माण में भाग लेते हैं।';
+                exp2.textContent = 'Protons are positively charged particles in the nucleus. The number of protons defines the atomic number of an element.';
+                exp2Hindi.textContent = 'प्रोटॉन नाभिक में सकारात्मक रूप से आवेशित कण हैं। प्रोटॉन की संख्या किसी तत्व की परमाणु संख्या को परिभाषित करती है।';
+                exp3.textContent = 'Neutrons are neutral particles in the nucleus with no electrical charge. They contribute to the mass of the atom and stabilize the nucleus.';
+                exp3Hindi.textContent = 'न्यूट्रॉन नाभिक में तटस्थ कण हैं जिनका कोई विद्युत आवेश नहीं होता है। वे परमाणु के द्रव्यमान में योगदान करते हैं और नाभिक को स्थिर करते हैं।';
+                exp4.textContent = 'Valence electrons are the electrons in the outermost shell of an atom. They determine how atoms bond with other atoms.';
+                exp4Hindi.textContent = 'संयोजकता इलेक्ट्रॉन परमाणु के सबसे बाहरी कोश में इलेक्ट्रॉन होते हैं। ये निर्धारित करते हैं कि परमाणु अन्य परमाणुओं के साथ कैसे बंधते हैं।';
+            } else if (animationState === 'valence') {
+                expTitle.textContent = 'Valence Electrons';
+                exp1.textContent = 'Valence electrons are located in the outermost electron shell (valence shell) of an atom. They are involved in chemical bonding.';
+                exp1Hindi.textContent = 'संयोजकता इलेक्ट्रॉन परमाणु के सबसे बाहरी इलेक्ट्रॉन कोश (संयोजकता कोश) में स्थित होते हैं। वे रासायनिक बंधन में शामिल होते हैं।';
+                exp2.textContent = 'Atoms with complete valence shells (8 electrons for most atoms, 2 for hydrogen) are stable and inert (like noble gases).';
+                exp2Hindi.textContent = 'पूर्ण संयोजकता कोश वाले परमाणु (अधिकांश परमाणुओं के लिए 8 इलेक्ट्रॉन, हाइड्रोजन के लिए 2) स्थिर और निष्क्रिय होते हैं (जैसे कि अक्रिय गैसें)।';
+                exp3.textContent = 'Atoms tend to gain, lose, or share valence electrons to achieve a full outer shell, following the octet rule.';
+                exp3Hindi.textContent = 'परमाणु अष्टक नियम का पालन करते हुए एक पूर्ण बाहरी कोश प्राप्त करने के लिए संयोजकता इलेक्ट्रॉनों को प्राप्त करते हैं, खोते हैं या साझा करते हैं।';
+                exp4.textContent = 'The number of valence electrons determines an element\'s chemical reactivity and the types of bonds it can form.';
+                exp4Hindi.textContent = 'संयोजकता इलेक्ट्रॉनों की संख्या किसी तत्व की रासायनिक प्रतिक्रियाशीलता और उसके द्वारा बनाए जा सकने वाले बंधनों के प्रकारों को निर्धारित करती है।';
+            } else if (animationState === 'ionic') {
+                expTitle.textContent = 'Ionic Bonds';
+                exp1.textContent = 'Ionic bonds form when one atom transfers valence electrons to another atom, resulting in oppositely charged ions that attract each other.';
+                exp1Hindi.textContent = 'आयनिक बंध तब बनते हैं जब एक परमाणु दूसरे परमाणु को संयोजकता इलेक्ट्रॉनों को स्थानांतरित करता है, जिसके परिणामस्वरूप विपरीत रूप से आवेशित आयन एक-दूसरे को आकर्षित करते हैं।';
+                exp2.textContent = 'Typically occurs between metals (which lose electrons) and non-metals (which gain electrons). Example: Sodium (Na) and Chlorine (Cl) form NaCl.';
+                exp2Hindi.textContent = 'आमतौर पर धातुओं (जो इलेक्ट्रॉनों को खोते हैं) और अधातुओं (जो इलेक्ट्रॉनों को प्राप्त करते हैं) के बीच होता है। उदाहरण: सोडियम (Na) और क्लोरीन (Cl) NaCl बनाते हैं।';
+                exp3.textContent = 'The atom that loses electrons becomes a positively charged cation, while the atom that gains electrons becomes a negatively charged anion.';
+                exp3Hindi.textContent = 'जो परमाणु इलेक्ट्रॉनों को खोता है वह सकारात्मक रूप से आवेशित कैटायन बन जाता है, जबकि जो परमाणु इलेक्ट्रॉनों को प्राप्त करता है वह नकारात्मक रूप से आवेशित आयन बन जाता है।';
+                exp4.textContent = 'Ionic compounds form crystalline structures with high melting points and conduct electricity when dissolved in water or melted.';
+                exp4Hindi.textContent = 'आयनिक यौगिक क्रिस्टलीय संरचनाओं को बनाते हैं जिनके उच्च गलनांक होते हैं और पानी में घुलने या पिघलने पर बिजली का संचालन करते हैं।';
+            } else if (animationState === 'covalent') {
+                expTitle.textContent = 'Covalent Bonds';
+                exp1.textContent = 'Covalent bonds form when atoms share valence electrons to achieve a full outer shell. This sharing creates molecules.';
+                exp1Hindi.textContent = 'सहसंयोजक बंध तब बनते हैं जब परमाणु पूर्ण बाहरी कोश प्राप्त करने के लिए संयोजकता इलेक्ट्रॉनों को साझा करते हैं। यह साझाकरण अणु बनाता है।';
+                exp2.textContent = 'Typically occurs between non-metal atoms. Example: Two hydrogen atoms share electrons to form H₂ molecule.';
+                exp2Hindi.textContent = 'आमतौर पर अधातु परमाणुओं के बीच होता है। उदाहरण: दो हाइड्रोजन परमाणु H₂ अणु बनाने के लिए इलेक्ट्रॉनों को साझा करते हैं।';
+                exp3.textContent = 'In a single covalent bond, one pair of electrons is shared. Double and triple bonds share two and three pairs respectively.';
+                exp3Hindi.textContent = 'एकल सहसंयोजक बंध में, इलेक्ट्रॉनों की एक जोड़ी साझा की जाती है। दोहरे और तिहरे बंध क्रमशः दो और तीन जोड़े साझा करते हैं।';
+                exp4.textContent = 'Covalent compounds typically have lower melting points than ionic compounds and do not conduct electricity.';
+                exp4Hindi.textContent = 'सहसंयोजक यौगिकों में आमतौर पर आयनिक यौगिकों की तुलना में कम गलनांक होते हैं और बिजली का संचालन नहीं करते हैं।';
+            } else if (animationState === 'transfer') {
+                expTitle.textContent = 'Charge Transfer';
+                exp1.textContent = 'Charge transfer occurs when electrons move from one atom or molecule to another, creating ions with positive and negative charges.';
+                exp1Hindi.textContent = 'आवेश स्थानांतरण तब होता है जब इलेक्ट्रॉन एक परमाणु या अणु से दूसरे में जाते हैं, जिससे सकारात्मक और नकारात्मक आवेशों के साथ आयन बनते हैं।';
+                exp2.textContent = 'In oxidation-reduction (redox) reactions, electrons are transferred between atoms. Oxidation is loss of electrons, reduction is gain.';
+                exp2Hindi.textContent = 'ऑक्सीकरण-अपचयन (रेडॉक्स) प्रतिक्रियाओं में, इलेक्ट्रॉन परमाणुओं के बीच स्थानांतरित होते हैं। ऑक्सीकरण इलेक्ट्रॉनों की हानि है, अपचयन लाभ है।';
+                exp3.textContent = 'Battery operation relies on charge transfer. Electrons flow from the negative terminal (anode) to the positive terminal (cathode).';
+                exp3Hindi.textContent = 'बैटरी संचालन आवेश स्थानांतरण पर निर्भर करता है। इलेक्ट्रॉन नकारात्मक टर्मिनल (एनोड) से सकारात्मक टर्मिनल (कैथोड) तक प्रवाहित होते हैं।';
+                exp4.textContent = 'In semiconductors and electronics, controlled charge transfer enables the functioning of transistors, diodes, and integrated circuits.';
+                exp4Hindi.textContent = 'सेमीकंडक्टर और इलेक्ट्रॉनिक्स में, नियंत्रित आवेश स्थानांतरण ट्रांजिस्टर, डायोड और एकीकृत सर्किट के कामकाज को सक्षम बनाता है।';
+            }
+        }
+        
+        // Button event listeners
+        atomBtn.addEventListener('click', () => {
+            animationState = 'atom';
+            setActiveButton(atomBtn);
+            updateExplanations();
+        });
+        
+        valenceBtn.addEventListener('click', () => {
+            animationState = 'valence';
+            setActiveButton(valenceBtn);
+            updateExplanations();
+        });
+        
+        ionicBtn.addEventListener('click', () => {
+            animationState = 'ionic';
+            setActiveButton(ionicBtn);
+            updateExplanations();
+        });
+        
+        covalentBtn.addEventListener('click', () => {
+            animationState = 'covalent';
+            setActiveButton(covalentBtn);
+            updateExplanations();
+        });
+        
+        transferBtn.addEventListener('click', () => {
+            animationState = 'transfer';
+            setActiveButton(transferBtn);
+            updateExplanations();
+        });
+        
+        // Animation variables
+        let time = 0;
+        const particles = [];
+        const orbits = [];
+        
+        // Particle class
+        class Particle {
+            constructor(x, y, radius, color, type, charge, speed, orbitRadius) {
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.color = color;
+                this.type = type; // 'proton', 'neutron', 'electron'
+                this.charge = charge;
+                this.speed = speed;
+                this.orbitRadius = orbitRadius;
+                this.angle = Math.random() * Math.PI * 2;
+                this.originalX = x;
+                this.originalY = y;
+            }
+            
+            update() {
+                if (this.type === 'electron' && this.orbitRadius > 0) {
+                    this.angle += this.speed;
+                    this.x = this.originalX + Math.cos(this.angle) * this.orbitRadius;
+                    this.y = this.originalY + Math.sin(this.angle) * this.orbitRadius;
+                }
+            }
+            
+            draw() {
+                // Draw glow effect
+                const gradient = ctx.createRadialGradient(
+                    this.x, this.y, 0,
+                    this.x, this.y, this.radius * 1.5
+                );
+                
+                if (this.type === 'proton') {
+                    gradient.addColorStop(0, '#ff416c');
+                    gradient.addColorStop(1, '#ff4b2b');
+                } else if (this.type === 'neutron') {
+                    gradient.addColorStop(0, '#7f39fb');
+                    gradient.addColorStop(1, '#5a1fd9');
+                } else {
+                    gradient.addColorStop(0, '#41b8ff');
+                    gradient.addColorStop(1, '#2a7bff');
+                }
+                
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Draw charge symbol
+                ctx.fillStyle = 'white';
+                ctx.font = `${this.radius * 0.8}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                if (this.type === 'proton') {
+                    ctx.fillText('+', this.x, this.y);
+                } else if (this.type === 'electron') {
+                    ctx.fillText('-', this.x, this.y);
+                } else if (this.type === 'neutron') {
+                    ctx.fillText('0', this.x, this.y);
+                }
+            }
+        }
+        
+        // Bond line class
+        class BondLine {
+            constructor(x1, y1, x2, y2, width) {
+                this.x1 = x1;
+                this.y1 = y1;
+                this.x2 = x2;
+                this.y2 = y2;
+                this.width = width;
+                this.pulse = 0;
+            }
+            
+            update() {
+                this.pulse = (Math.sin(time * 3) + 1) * 0.5;
+            }
+            
+            draw() {
+                const gradient = ctx.createLinearGradient(this.x1, this.y1, this.x2, this.y2);
+                gradient.addColorStop(0, '#ffcc70');
+                gradient.addColorStop(1, '#ff9a00');
+                
+                ctx.beginPath();
+                ctx.moveTo(this.x1, this.y1);
+                ctx.lineTo(this.x2, this.y2);
+                ctx.lineWidth = this.width + this.pulse * 3;
+                ctx.strokeStyle = gradient;
+                ctx.stroke();
+                
+                // Draw electrons being shared or transferred
+                if (animationState === 'covalent' || animationState === 'transfer') {
+                    const electronX = this.x1 + (this.x2 - this.x1) * 0.5 + Math.cos(time * 4) * 5;
+                    const electronY = this.y1 + (this.y2 - this.y1) * 0.5 + Math.sin(time * 4) * 5;
+                    
+                    const electronGradient = ctx.createRadialGradient(
+                        electronX, electronY, 0,
+                        electronX, electronY, 8
+                    );
+                    electronGradient.addColorStop(0, '#41b8ff');
+                    electronGradient.addColorStop(1, '#2a7bff');
+                    
+                    ctx.beginPath();
+                    ctx.arc(electronX, electronY, 8, 0, Math.PI * 2);
+                    ctx.fillStyle = electronGradient;
+                    ctx.fill();
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.font = '10px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText('-', electronX, electronY);
+                }
+            }
+        }
+        
+        // Initialize particles based on animation state
+        function initParticles() {
+            particles.length = 0;
+            orbits.length = 0;
+            
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            
+            if (animationState === 'atom' || animationState === 'valence') {
+                // Draw nucleus with protons and neutrons
+                const nucleusRadius = 40;
+                
+                // Create protons and neutrons in nucleus
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i / 6) * Math.PI * 2;
+                    const radius = nucleusRadius * 0.6;
+                    const x = centerX + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    
+                    if (i % 2 === 0) {
+                        particles.push(new Particle(x, y, 12, '#ff416c', 'proton', '+1', 0, 0));
+                    } else {
+                        particles.push(new Particle(x, y, 12, '#7f39fb', 'neutron', '0', 0, 0));
+                    }
+                }
+                
+                // Create electron orbits and electrons
+                const orbitCount = animationState === 'valence' ? 3 : 2;
+                const electronColors = ['#41b8ff', '#2a7bff', '#00d4ff'];
+                
+                for (let i = 0; i < orbitCount; i++) {
+                    const orbitRadius = 80 + i * 70;
+                    orbits.push({
+                        x: centerX,
+                        y: centerY,
+                        radius: orbitRadius
+                    });
+                    
+                    // Add electrons to this orbit
+                    const electronCount = i === orbitCount - 1 && animationState === 'valence' ? 4 : 2 + i * 2;
+                    
+                    for (let j = 0; j < electronCount; j++) {
+                        const angle = (j / electronCount) * Math.PI * 2;
+                        const speed = 0.02 + (i * 0.005);
+                        
+                        particles.push(new Particle(
+                            centerX + Math.cos(angle) * orbitRadius,
+                            centerY + Math.sin(angle) * orbitRadius,
+                            8,
+                            electronColors[i % electronColors.length],
+                            'electron',
+                            '-1',
+                            speed,
+                            orbitRadius
+                        ));
+                    }
+                }
+                
+                // Highlight valence electrons if in valence mode
+                if (animationState === 'valence') {
+                    // Make the outermost electrons pulse
+                    particles.forEach(p => {
+                        if (p.type === 'electron' && p.orbitRadius === 220) {
+                            p.radius = 10 + Math.sin(time * 5) * 2;
+                        }
+                    });
+                }
+                
+            } else if (animationState === 'ionic' || animationState === 'covalent' || animationState === 'transfer') {
+                // Draw two atoms interacting
+                const atom1X = centerX - 120;
+                const atom2X = centerX + 120;
+                
+                // Atom 1 (e.g., Sodium for ionic)
+                for (let i = 0; i < 3; i++) {
+                    const angle = (i / 3) * Math.PI * 2;
+                    const radius = 15;
+                    const x = atom1X + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    
+                    if (i === 0) {
+                        particles.push(new Particle(x, y, 10, '#ff416c', 'proton', '+1', 0, 0));
+                    } else {
+                        particles.push(new Particle(x, y, 10, '#7f39fb', 'neutron', '0', 0, 0));
+                    }
+                }
+                
+                // Atom 2 (e.g., Chlorine for ionic)
+                for (let i = 0; i < 4; i++) {
+                    const angle = (i / 4) * Math.PI * 2;
+                    const radius = 15;
+                    const x = atom2X + Math.cos(angle) * radius;
+                    const y = centerY + Math.sin(angle) * radius;
+                    
+                    if (i < 2) {
+                        particles.push(new Particle(x, y, 10, '#ff416c', 'proton', '+1', 0, 0));
+                    } else {
+                        particles.push(new Particle(x, y, 10, '#7f39fb', 'neutron', '0', 0, 0));
+                    }
+                }
+                
+                // Add electrons
+                const electronCount1 = animationState === 'ionic' ? 2 : 1;
+                const electronCount2 = animationState === 'ionic' ? 7 : 1;
+                
+                // Atom 1 electrons
+                for (let i = 0; i < electronCount1; i++) {
+                    const orbitRadius = 50;
+                    const angle = (i / electronCount1) * Math.PI * 2 + time * 0.5;
+                    
+                    particles.push(new Particle(
+                        atom1X + Math.cos(angle) * orbitRadius,
+                        centerY + Math.sin(angle) * orbitRadius,
+                        7,
+                        '#41b8ff',
+                        'electron',
+                        '-1',
+                        0.03,
+                        orbitRadius
+                    ));
+                }
+                
+                // Atom 2 electrons
+                for (let i = 0; i < electronCount2; i++) {
+                    const orbitRadius = 50;
+                    const angle = (i / electronCount2) * Math.PI * 2 - time * 0.5;
+                    
+                    particles.push(new Particle(
+                        atom2X + Math.cos(angle) * orbitRadius,
+                        centerY + Math.sin(angle) * orbitRadius,
+                        7,
+                        '#41b8ff',
+                        'electron',
+                        '-1',
+                        0.03,
+                        orbitRadius
+                    ));
+                }
+                
+                // Add a bond line between atoms
+                if (animationState === 'covalent' || animationState === 'ionic' || animationState === 'transfer') {
+                    bonds.push(new BondLine(atom1X, centerY, atom2X, centerY, 5));
+                }
+                
+                // For ionic bond, show electron transfer
+                if (animationState === 'ionic' || animationState === 'transfer') {
+                    // Create a moving electron between atoms
+                    const transferProgress = (Math.sin(time * 2) + 1) / 2;
+                    const transferX = atom1X + (atom2X - atom1X) * transferProgress;
+                    const transferY = centerY + Math.sin(time * 5) * 10;
+                    
+                    particles.push(new Particle(
+                        transferX, transferY, 9, '#00d4ff', 'electron', '-1', 0, 0
+                    ));
+                }
+            }
+        }
+        
+        const bonds = [];
+        
+        // Animation loop
+        function animate() {
+            // Clear canvas with a slight fade effect for trailing animation
+            ctx.fillStyle = 'rgba(10, 10, 30, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            time += 0.02;
+            
+            // Reinitialize particles if state changed
+            if (particles.length === 0 || 
+                (animationState === 'valence' && particles[0]?.orbitRadius !== 220)) {
+                initParticles();
+            }
+            
+            // Draw orbits
+            orbits.forEach(orbit => {
+                ctx.beginPath();
+                ctx.arc(orbit.x, orbit.y, orbit.radius, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(65, 184, 255, 0.2)';
+                ctx.setLineDash([5, 5]);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            });
+            
+            // Update and draw bonds
+            bonds.forEach(bond => {
+                bond.update();
+                bond.draw();
+            });
+            
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            // Draw labels based on animation state
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            
+            if (animationState === 'atom') {
+                ctx.fillText('Atomic Structure: Protons, Neutrons & Electrons', canvas.width / 2, 30);
+            } else if (animationState === 'valence') {
+                ctx.fillText('Valence Electrons (Outermost Shell)', canvas.width / 2, 30);
+                // Highlight valence shell
+                if (orbits.length > 0) {
+                    const outerOrbit = orbits[orbits.length - 1];
+                    ctx.beginPath();
+                    ctx.arc(outerOrbit.x, outerOrbit.y, outerOrbit.radius, 0, Math.PI * 2);
+                    ctx.strokeStyle = 'rgba(255, 204, 112, 0.6)';
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                }
+            } else if (animationState === 'ionic') {
+                ctx.fillText('Ionic Bond: Electron Transfer Between Atoms', canvas.width / 2, 30);
+                ctx.font = '14px Arial';
+                ctx.fillText('Na⁺ + Cl⁻ → NaCl', canvas.width / 2, 55);
+            } else if (animationState === 'covalent') {
+                ctx.fillText('Covalent Bond: Electron Sharing Between Atoms', canvas.width / 2, 30);
+                ctx.font = '14px Arial';
+                ctx.fillText('H + H → H₂ (Hydrogen Molecule)', canvas.width / 2, 55);
+            } else if (animationState === 'transfer') {
+                ctx.fillText('Charge Transfer in Redox Reactions & Batteries', canvas.width / 2, 30);
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        initParticles();
+        animate();
+        
+        // Make canvas interactive
+        canvas.addEventListener('click', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Check if clicked on a particle
+            particles.forEach(particle => {
+                const distance = Math.sqrt(
+                    Math.pow(x - particle.x, 2) + Math.pow(y - particle.y, 2)
+                );
+                
+                if (distance < particle.radius) {
+                    // Show particle info
+                    let info = '';
+                    if (particle.type === 'proton') {
+                        info = 'Proton: Positive charge (+1), located in nucleus';
+                    } else if (particle.type === 'neutron') {
+                        info = 'Neutron: No charge (0), located in nucleus';
+                    } else if (particle.type === 'electron') {
+                        info = 'Electron: Negative charge (-1), orbits nucleus';
+                    }
+                    
+                    alert(`Clicked on ${particle.type}!\n${info}`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
