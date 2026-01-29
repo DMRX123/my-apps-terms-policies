@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Govt Schemes</title>
+    <style>
+        :root { --gov-orange: #ff9933; --gov-green: #138808; --gov-blue: #000080; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; margin: 0; padding-bottom: 50px; }
+        
+        .header { background: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--gov-orange); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header img { height: 40px; margin-bottom: 5px; }
+        .header h1 { margin: 0; font-size: 1.2rem; color: var(--gov-blue); text-transform: uppercase; }
+
+        .scheme-list { max-width: 600px; margin: 20px auto; padding: 0 15px; }
+        
+        .scheme-card {
+            background: white; border-radius: 10px; margin-bottom: 15px; overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .scheme-header {
+            padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            background: linear-gradient(90deg, #fff 95%, #eee 100%);
+        }
+        .scheme-header h3 { margin: 0; color: #333; font-size: 1rem; }
+        .icon { font-size: 1.5rem; color: var(--gov-orange); }
+        
+        /* Checkbox hack for accordion */
+        input[type="checkbox"] { display: none; }
+        .scheme-details {
+            max-height: 0; overflow: hidden; padding: 0 20px;
+            background: #fafafa; border-top: 1px solid #eee;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        
+        input:checked + .scheme-header { background: var(--gov-blue); }
+        input:checked + .scheme-header h3, input:checked + .scheme-header .icon { color: white; }
+        input:checked ~ .scheme-details { max-height: 300px; padding: 20px; }
+        
+        .tag { background: #e1f5fe; color: var(--gov-blue); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 5px; display: inline-block; }
+        
+        .apply-btn { display: block; width: 100%; padding: 12px; background: var(--gov-green); color: white; text-align: center; text-decoration: none; border-radius: 5px; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div style="font-size:2rem; margin-bottom:5px;">🏛️</div>
+    <h1>Yojana & Schemes</h1>
+</div>
+
+<div class="scheme-list">
+    
+    <div class="scheme-card">
+        <label>
+            <input type="checkbox">
+            <div class="scheme-header">
+                <div>
+                    <h3>PM Kisan Samman Nidhi</h3>
+                    <span class="tag">Agriculture</span>
+                </div>
+                <div class="icon">+</div>
+            </div>
+            <div class="scheme-details">
+                <p><strong>Eligibility:</strong> Small & Marginal Farmers.</p>
+                <p><strong>Benefit:</strong> ₹6,000 per year in 3 installments.</p>
+                <a href="#" class="apply-btn">Check Status</a>
+            </div>
+        </label>
+    </div>
+
+    <div class="scheme-card">
+        <label>
+            <input type="checkbox">
+            <div class="scheme-header">
+                <div>
+                    <h3>Digital India Mission</h3>
+                    <span class="tag">Technology</span>
+                </div>
+                <div class="icon">+</div>
+            </div>
+            <div class="scheme-details">
+                <p><strong>Aim:</strong> To ensure government services are available electronically.</p>
+                <p><strong>New:</strong> Free Wi-Fi in rural panchayats.</p>
+                <a href="#" class="apply-btn">Learn More</a>
+            </div>
+        </label>
+    </div>
+
+</div>
+</body>
+</html>

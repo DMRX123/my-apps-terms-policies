@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Roundup</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background: #111; color: white; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        
+        .header { padding: 20px; }
+        h1 { font-size: 1.8rem; margin: 0; background: linear-gradient(45deg, #ff9f43, #ee5253); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .carousel {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; 
+            height: 70vh; padding: 20px; align-items: center;
+            gap: 20px; -webkit-overflow-scrolling: touch;
+        }
+        .carousel::-webkit-scrollbar { display: none; }
+
+        .card {
+            flex: 0 0 85%; scroll-snap-align: center;
+            height: 100%; position: relative; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+        .card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        
+        .card-info {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            background: linear-gradient(to top, black, transparent);
+            padding: 30px 20px; box-sizing: border-box;
+            transform: translateY(20px); transition: transform 0.5s;
+        }
+        .card:hover .card-info { transform: translateY(0); }
+        
+        .day { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ff9f43; font-weight: 700; }
+        h2 { font-size: 1.8rem; line-height: 1.2; margin: 10px 0; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        
+        .progress-container { width: 80%; margin: 0 auto; height: 4px; background: #333; border-radius: 2px; }
+        .progress-bar { width: 30%; height: 100%; background: #ff9f43; border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <p style="margin:0; font-size:0.8rem; color:#888;">JAN 22 - JAN 29</p>
+    <h1>Weekly Brief</h1>
+</div>
+
+<div class="carousel">
+    <div class="card">
+        <img src="https://source.unsplash.com/random/600x900/?meeting" alt="">
+        <div class="card-info">
+            <div class="day">MONDAY</div>
+            <h2>Tech Giants merge in $50B deal</h2>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://source.unsplash.com/random/600x900/?cricket" alt="">
+        <div class="card-info">
+            <div class="day">WEDNESDAY</div>
+            <h2>India wins series in thriller match</h2>
+        </div>
+    </div>
+    <div class="card">
+        <img src="https://source.unsplash.com/random/600x900/?space" alt="">
+        <div class="card-info">
+            <div class="day">FRIDAY</div>
+            <h2>New galaxy discovered by NASA</h2>
+        </div>
+    </div>
+</div>
+
+<div class="progress-container">
+    <div class="progress-bar"></div>
+</div>
+
+</body>
+</html>
