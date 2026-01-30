@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #e0e0e0; padding: 15px; }
+        .card { background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+        
+        .status { position: absolute; top: 15px; right: 15px; background: red; color: white; padding: 2px 8px; font-size: 0.7rem; border-radius: 10px; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+        
+        .sport-name { color: #888; font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; }
+        
+        .score-board { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+        .team { text-align: center; width: 35%; }
+        .team img { width: 50px; height: 50px; border-radius: 50%; background: #ddd; display: block; margin: 0 auto 5px; }
+        .team-name { font-weight: bold; font-size: 1.1rem; }
+        
+        .score { font-size: 2rem; font-weight: 900; color: #333; }
+        .vs { font-size: 0.8rem; color: #aaa; }
+        
+        .details { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ccc; text-align: center; font-size: 0.9rem; color: #555; }
+        
+        .highlight-btn { width: 100%; border: none; padding: 12px; background: #2980b9; color: white; border-radius: 10px; margin-top: 15px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <span class="status">LIVE</span>
+    <div class="sport-name">CRICKET - T20</div>
+    <div class="score-board">
+        <div class="team">
+            <img src="https://via.placeholder.com/50/003399/FFFFFF?text=IND" alt="Ind">
+            <div class="team-name">IND</div>
+        </div>
+        <div style="text-align:center;">
+            <div class="score">182/3</div>
+            <div class="vs">18.4 Overs</div>
+        </div>
+        <div class="team">
+            <img src="https://via.placeholder.com/50/FFCC00/000000?text=AUS" alt="Aus">
+            <div class="team-name">AUS</div>
+        </div>
+    </div>
+    <div class="details">Kohli Batting (85*) • Need 12 runs in 8 balls</div>
+</div>
+
+<div class="card">
+    <div class="sport-name">FOOTBALL - PREMIER LEAGUE</div>
+    <div class="score-board">
+        <div class="team">
+            <div class="team-name">MUN</div>
+        </div>
+        <div class="score">2 - 1</div>
+        <div class="team">
+            <div class="team-name">CHE</div>
+        </div>
+    </div>
+    <button class="highlight-btn">Watch Highlights</button>
+</div>
+
+</body>
+</html>
