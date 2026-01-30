@@ -3,92 +3,897 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Govt Schemes</title>
+    <title>Government Schemes | Exam Preparation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { --gov-orange: #ff9933; --gov-green: #138808; --gov-blue: #000080; }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; margin: 0; padding-bottom: 50px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        .header { background: white; padding: 20px; text-align: center; border-bottom: 4px solid var(--gov-orange); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .header img { height: 40px; margin-bottom: 5px; }
-        .header h1 { margin: 0; font-size: 1.2rem; color: var(--gov-blue); text-transform: uppercase; }
-
-        .scheme-list { max-width: 600px; margin: 20px auto; padding: 0 15px; }
-        
-        .scheme-card {
-            background: white; border-radius: 10px; margin-bottom: 15px; overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
+            color: #2d3748;
+            line-height: 1.6;
+            min-height: 100vh;
         }
         
         .scheme-header {
-            padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer;
-            background: linear-gradient(90deg, #fff 95%, #eee 100%);
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            color: white;
+            padding: 35px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(13, 71, 161, 0.2);
+            position: relative;
+            overflow: hidden;
         }
-        .scheme-header h3 { margin: 0; color: #333; font-size: 1rem; }
-        .icon { font-size: 1.5rem; color: var(--gov-orange); }
         
-        /* Checkbox hack for accordion */
-        input[type="checkbox"] { display: none; }
+        .header-title {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .header-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .scheme-count {
+            display: inline-block;
+            background: #ff9800;
+            color: white;
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .filter-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .filter-title {
+            font-size: 1.5rem;
+            color: #0d47a1;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filter-title i {
+            margin-right: 10px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            padding: 10px 25px;
+            background: #e3f2fd;
+            color: #1565c0;
+            border: 2px solid #bbdefb;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: #1565c0;
+            color: white;
+            border-color: #1565c0;
+        }
+        
+        .search-box {
+            position: relative;
+            max-width: 500px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            border: 2px solid #bbdefb;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: #f8f9ff;
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1565c0;
+        }
+        
+        .scheme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 35px;
+            margin-bottom: 50px;
+        }
+        
+        .scheme-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+        
+        .scheme-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .scheme-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff9800;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+        
+        .scheme-header-color {
+            height: 120px;
+            background: linear-gradient(135deg, #1565c0, #0d47a1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scheme-icon {
+            position: absolute;
+            bottom: -30px;
+            left: 30px;
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scheme-icon i {
+            font-size: 2rem;
+            color: #1565c0;
+        }
+        
+        .scheme-content {
+            padding: 50px 30px 30px;
+        }
+        
+        .scheme-name {
+            font-size: 1.6rem;
+            color: #0d47a1;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .scheme-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .scheme-ministry {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+        
+        .scheme-description {
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
         .scheme-details {
-            max-height: 0; overflow: hidden; padding: 0 20px;
-            background: #fafafa; border-top: 1px solid #eee;
-            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
         }
         
-        input:checked + .scheme-header { background: var(--gov-blue); }
-        input:checked + .scheme-header h3, input:checked + .scheme-header .icon { color: white; }
-        input:checked ~ .scheme-details { max-height: 300px; padding: 20px; }
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
         
-        .tag { background: #e1f5fe; color: var(--gov-blue); padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; margin-top: 5px; display: inline-block; }
+        .detail-item:last-child {
+            border-bottom: none;
+        }
         
-        .apply-btn { display: block; width: 100%; padding: 12px; background: var(--gov-green); color: white; text-align: center; text-decoration: none; border-radius: 5px; margin-top: 15px; font-weight: bold; }
+        .detail-label {
+            font-weight: 600;
+            color: #0d47a1;
+        }
+        
+        .detail-value {
+            color: #2d3748;
+            text-align: right;
+            max-width: 60%;
+        }
+        
+        .exam-relevance {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .relevance-tag {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .relevance-tag.prelims {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+        
+        .relevance-tag.mains {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+        
+        .analysis-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #0d47a1;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: #ff9800;
+        }
+        
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .chart-box {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .chart-title {
+            font-size: 1.2rem;
+            color: #0d47a1;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .animation-container {
+            width: 100%;
+            height: 300px;
+            margin: 50px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table th {
+            background: #0d47a1;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9ff;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .scheme-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-
-<div class="header">
-    <div style="font-size:2rem; margin-bottom:5px;">🏛️</div>
-    <h1>Yojana & Schemes</h1>
-</div>
-
-<div class="scheme-list">
+    <div class="scheme-header">
+        <h1 class="header-title">Government Schemes & Programs</h1>
+        <p class="header-subtitle">Comprehensive coverage of central and state government schemes for UPSC, MPPSC, and other competitive examinations</p>
+        <div class="scheme-count">
+            <i class="fas fa-project-diagram"></i> <span id="scheme-total">48</span> Schemes Covered
+        </div>
+    </div>
     
-    <div class="scheme-card">
-        <label>
-            <input type="checkbox">
-            <div class="scheme-header">
-                <div>
-                    <h3>PM Kisan Samman Nidhi</h3>
-                    <span class="tag">Agriculture</span>
+    <div class="container">
+        <div class="filter-section">
+            <h2 class="filter-title"><i class="fas fa-filter"></i> Filter Schemes</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Schemes</button>
+                <button class="filter-btn" data-filter="social">Social Welfare</button>
+                <button class="filter-btn" data-filter="economic">Economic</button>
+                <button class="filter-btn" data-filter="agriculture">Agriculture</button>
+                <button class="filter-btn" data-filter="health">Health</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+                <button class="filter-btn" data-filter="infrastructure">Infrastructure</button>
+                <button class="filter-btn" data-filter="environment">Environment</button>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="scheme-search" placeholder="Search schemes by name, ministry, or keyword...">
+            </div>
+        </div>
+        
+        <div class="animation-container" id="schemeAnimation"></div>
+        
+        <div class="scheme-grid" id="schemes-container">
+            <!-- Scheme 1 -->
+            <div class="scheme-card" data-category="social">
+                <div class="scheme-badge">Flagship</div>
+                <div class="scheme-header-color">
+                    <div class="scheme-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
                 </div>
-                <div class="icon">+</div>
+                <div class="scheme-content">
+                    <h3 class="scheme-name">Pradhan Mantri Awas Yojana (PMAY)</h3>
+                    <div class="scheme-meta">
+                        <span>Launched: 2015</span>
+                        <span class="scheme-ministry">MoHUA</span>
+                    </div>
+                    <p class="scheme-description">Housing for All by 2022 mission with components for urban and rural areas. Focus on affordable housing with credit linked subsidy.</p>
+                    
+                    <div class="scheme-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Target Beneficiaries:</span>
+                            <span class="detail-value">Economically Weaker Sections</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Budget (2023-24):</span>
+                            <span class="detail-value">₹79,590 Cr</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Status:</span>
+                            <span class="detail-value">Ongoing (Extended)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exam-relevance">
+                        <span class="relevance-tag">UPSC GS Paper II</span>
+                        <span class="relevance-tag prelims">Prelims Expected</span>
+                        <span class="relevance-tag mains">Mains Answer Writing</span>
+                    </div>
+                </div>
             </div>
-            <div class="scheme-details">
-                <p><strong>Eligibility:</strong> Small & Marginal Farmers.</p>
-                <p><strong>Benefit:</strong> ₹6,000 per year in 3 installments.</p>
-                <a href="#" class="apply-btn">Check Status</a>
+            
+            <!-- Scheme 2 -->
+            <div class="scheme-card" data-category="agriculture">
+                <div class="scheme-badge">New Launch</div>
+                <div class="scheme-header-color">
+                    <div class="scheme-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                </div>
+                <div class="scheme-content">
+                    <h3 class="scheme-name">PM Kisan Samman Nidhi</h3>
+                    <div class="scheme-meta">
+                        <span>Launched: 2019</span>
+                        <span class="scheme-ministry">Agriculture</span>
+                    </div>
+                    <p class="scheme-description">Income support scheme providing ₹6,000 per year to farmer families in three equal installments through DBT.</p>
+                    
+                    <div class="scheme-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Coverage:</span>
+                            <span class="detail-value">All landholding farmers</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Beneficiaries:</span>
+                            <span class="detail-value">11.5 Cr+ farmers</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Budget (2023-24):</span>
+                            <span class="detail-value">₹60,000 Cr</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exam-relevance">
+                        <span class="relevance-tag">UPSC GS Paper III</span>
+                        <span class="relevance-tag prelims">Prelims Important</span>
+                        <span class="relevance-tag">Rural Development</span>
+                    </div>
+                </div>
             </div>
-        </label>
+            
+            <!-- Scheme 3 -->
+            <div class="scheme-card" data-category="health">
+                <div class="scheme-badge">Health</div>
+                <div class="scheme-header-color">
+                    <div class="scheme-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+                <div class="scheme-content">
+                    <h3 class="scheme-name">Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (PM-JAY)</h3>
+                    <div class="scheme-meta">
+                        <span>Launched: 2018</span>
+                        <span class="scheme-ministry">Health</span>
+                    </div>
+                    <p class="scheme-description">World's largest health insurance scheme providing coverage of ₹5 lakh per family per year for secondary and tertiary care hospitalization.</p>
+                    
+                    <div class="scheme-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Target:</span>
+                            <span class="detail-value">10.74 Cr families</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Hospitals Empaneled:</span>
+                            <span class="detail-value">26,000+</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Beneficiaries:</span>
+                            <span class="detail-value">30 Cr+ people</span>
+                        </div>
+                    </div>
+                    
+                    <div class="exam-relevance">
+                        <span class="relevance-tag">UPSC GS Paper II</span>
+                        <span class="relevance-tag mains">Mains Important</span>
+                        <span class="relevance-tag">Social Justice</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="analysis-section">
+            <h2 class="section-title">Scheme Analysis & Comparison</h2>
+            
+            <div class="chart-container">
+                <div class="chart-box">
+                    <h3 class="chart-title">Budget Allocation by Sector (2023-24)</h3>
+                    <canvas id="sectorChart"></canvas>
+                </div>
+                <div class="chart-box">
+                    <h3 class="chart-title">Beneficiary Reach (in Crores)</h3>
+                    <canvas id="beneficiaryChart"></canvas>
+                </div>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Scheme Name</th>
+                        <th>Launch Year</th>
+                        <th>Ministry</th>
+                        <th>Key Objective</th>
+                        <th>Exam Relevance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Swachh Bharat Mission</td>
+                        <td>2014</td>
+                        <td>MoHUA</td>
+                        <td>Open defecation free India</td>
+                        <td>GS II & III</td>
+                    </tr>
+                    <tr>
+                        <td>Make in India</td>
+                        <td>2014</td>
+                        <td>Commerce</td>
+                        <td>Boost manufacturing sector</td>
+                        <td>GS III (Economy)</td>
+                    </tr>
+                    <tr>
+                        <td>Digital India</td>
+                        <td>2015</td>
+                        <td>Electronics & IT</td>
+                        <td>Digital infrastructure & governance</td>
+                        <td>GS II & III</td>
+                    </tr>
+                    <tr>
+                        <td>Startup India</td>
+                        <td>2016</td>
+                        <td>Commerce</td>
+                        <td>Promote startup ecosystem</td>
+                        <td>GS III</td>
+                    </tr>
+                    <tr>
+                        <td>National Education Policy 2020</td>
+                        <td>2020</td>
+                        <td>Education</td>
+                        <td>Transform education system</td>
+                        <td>GS II</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Government schemes database updated regularly • Includes analysis for answer writing • Focus on implementation and outcomes</p>
+            <p style="margin-top: 15px;">© 2024 Competitive Exams Preparation. All scheme information from official sources.</p>
+        </div>
     </div>
 
-    <div class="scheme-card">
-        <label>
-            <input type="checkbox">
-            <div class="scheme-header">
-                <div>
-                    <h3>Digital India Mission</h3>
-                    <span class="tag">Technology</span>
-                </div>
-                <div class="icon">+</div>
-            </div>
-            <div class="scheme-details">
-                <p><strong>Aim:</strong> To ensure government services are available electronically.</p>
-                <p><strong>New:</strong> Free Wi-Fi in rural panchayats.</p>
-                <a href="#" class="apply-btn">Learn More</a>
-            </div>
-        </label>
-    </div>
-
-</div>
+    <script>
+        // Filter and search functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                filterSchemes(filter);
+            });
+        });
+        
+        // Search functionality
+        document.getElementById('scheme-search').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            filterSchemes('search', searchTerm);
+        });
+        
+        function filterSchemes(filter, searchTerm = '') {
+            const schemes = document.querySelectorAll('.scheme-card');
+            let visibleCount = 0;
+            
+            schemes.forEach(scheme => {
+                const category = scheme.getAttribute('data-category');
+                const schemeName = scheme.querySelector('.scheme-name').textContent.toLowerCase();
+                const schemeDesc = scheme.querySelector('.scheme-description').textContent.toLowerCase();
+                
+                let shouldShow = false;
+                
+                if (filter === 'search') {
+                    shouldShow = schemeName.includes(searchTerm) || schemeDesc.includes(searchTerm) || 
+                                 scheme.textContent.toLowerCase().includes(searchTerm);
+                } else if (filter === 'all') {
+                    shouldShow = true;
+                } else {
+                    shouldShow = category === filter;
+                }
+                
+                if (shouldShow) {
+                    scheme.style.display = 'block';
+                    visibleCount++;
+                    
+                    // Add animation delay for staggered appearance
+                    scheme.style.animationDelay = `${visibleCount * 0.1}s`;
+                } else {
+                    scheme.style.display = 'none';
+                }
+            });
+            
+            // Update scheme count
+            document.getElementById('scheme-total').textContent = visibleCount;
+        }
+        
+        // Charts
+        const sectorCtx = document.getElementById('sectorChart').getContext('2d');
+        const sectorChart = new Chart(sectorCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Social Welfare', 'Agriculture', 'Health', 'Education', 'Infrastructure', 'Others'],
+                datasets: [{
+                    data: [28, 22, 18, 15, 12, 5],
+                    backgroundColor: [
+                        '#0d47a1',
+                        '#1565c0',
+                        '#1976d2',
+                        '#2196f3',
+                        '#64b5f6',
+                        '#bbdefb'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.label}: ${context.raw}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        const beneficiaryCtx = document.getElementById('beneficiaryChart').getContext('2d');
+        const beneficiaryChart = new Chart(beneficiaryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['PM-KISAN', 'PM-JAY', 'PMAY', 'MGNREGA', 'NSAP'],
+                datasets: [{
+                    label: 'Beneficiaries (in Crores)',
+                    data: [11.5, 10.7, 2.9, 15.2, 4.1],
+                    backgroundColor: '#ff9800',
+                    borderColor: '#f57c00',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Beneficiaries (in Crores)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        
+        // 3D Animation
+        const animationContainer = document.getElementById('schemeAnimation');
+        
+        if (animationContainer && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, animationContainer.clientWidth / animationContainer.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(animationContainer.clientWidth, animationContainer.clientHeight);
+            renderer.setClearColor(0x000000, 0);
+            animationContainer.appendChild(renderer.domElement);
+            
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 20, 15);
+            scene.add(directionalLight);
+            
+            // Create government building structure
+            const buildingGroup = new THREE.Group();
+            
+            // Main building
+            const buildingGeometry = new THREE.BoxGeometry(6, 8, 4);
+            const buildingMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x0d47a1,
+                shininess: 100
+            });
+            const building = new THREE.Mesh(buildingGeometry, buildingMaterial);
+            buildingGroup.add(building);
+            
+            // Roof
+            const roofGeometry = new THREE.ConeGeometry(4, 2, 4);
+            const roofMaterial = new THREE.MeshPhongMaterial({ color: 0x1565c0 });
+            const roof = new THREE.Mesh(roofGeometry, roofMaterial);
+            roof.position.y = 5;
+            buildingGroup.add(roof);
+            
+            // Pillars
+            const pillarGeometry = new THREE.CylinderGeometry(0.3, 0.3, 6);
+            const pillarMaterial = new THREE.MeshPhongMaterial({ color: 0x1976d2 });
+            
+            const positions = [
+                [-2.5, -1, 1.5],
+                [2.5, -1, 1.5],
+                [-2.5, -1, -1.5],
+                [2.5, -1, -1.5]
+            ];
+            
+            positions.forEach(pos => {
+                const pillar = new THREE.Mesh(pillarGeometry, pillarMaterial);
+                pillar.position.set(pos[0], pos[1], pos[2]);
+                buildingGroup.add(pillar);
+            });
+            
+            // Steps
+            const stepGeometry = new THREE.BoxGeometry(8, 0.2, 2);
+            const stepMaterial = new THREE.MeshPhongMaterial({ color: 0xbbdefb });
+            
+            for (let i = 0; i < 3; i++) {
+                const step = new THREE.Mesh(stepGeometry, stepMaterial);
+                step.position.set(0, -4 - i * 0.3, 2.5 + i * 0.5);
+                buildingGroup.add(step);
+            }
+            
+            scene.add(buildingGroup);
+            
+            // Create floating scheme icons
+            const schemeIcons = [];
+            const iconTypes = ['home', 'tractor', 'heartbeat', 'graduation-cap', 'road', 'tree', 'industry', 'users'];
+            const iconColors = [0xff9800, 0x4caf50, 0xf44336, 0x9c27b0, 0x009688, 0x8bc34a, 0xff5722, 0x607d8b];
+            
+            for (let i = 0; i < 8; i++) {
+                const iconGeometry = new THREE.OctahedronGeometry(0.8);
+                const iconMaterial = new THREE.MeshPhongMaterial({
+                    color: iconColors[i],
+                    shininess: 100,
+                    transparent: true,
+                    opacity: 0.9
+                });
+                
+                const icon = new THREE.Mesh(iconGeometry, iconMaterial);
+                
+                // Position in a circle around building
+                const radius = 10;
+                const angle = (i / 8) * Math.PI * 2;
+                
+                icon.position.x = Math.cos(angle) * radius;
+                icon.position.z = Math.sin(angle) * radius;
+                icon.position.y = Math.random() * 4 - 2;
+                
+                icon.rotationSpeed = {
+                    x: Math.random() * 0.02,
+                    y: Math.random() * 0.02,
+                    z: Math.random() * 0.02
+                };
+                
+                icon.floatSpeed = Math.random() * 0.005 + 0.003;
+                icon.floatDirection = Math.random() * Math.PI * 2;
+                
+                scene.add(icon);
+                schemeIcons.push(icon);
+            }
+            
+            camera.position.set(0, 8, 20);
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate building group
+                buildingGroup.rotation.y += 0.005;
+                
+                // Animate scheme icons
+                schemeIcons.forEach(icon => {
+                    icon.rotation.x += icon.rotationSpeed.x;
+                    icon.rotation.y += icon.rotationSpeed.y;
+                    icon.rotation.z += icon.rotationSpeed.z;
+                    
+                    // Floating motion
+                    icon.position.y += Math.sin(Date.now() * icon.floatSpeed + icon.floatDirection) * 0.03;
+                    
+                    // Orbit around building
+                    const angle = Math.atan2(icon.position.z, icon.position.x);
+                    const radius = 10;
+                    
+                    icon.position.x = Math.cos(angle + 0.005) * radius;
+                    icon.position.z = Math.sin(angle + 0.005) * radius;
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = animationContainer.clientWidth / animationContainer.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(animationContainer.clientWidth, animationContainer.clientHeight);
+            });
+            
+            animate();
+        }
+        
+        // Add hover effects to scheme cards
+        document.querySelectorAll('.scheme-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </body>
 </html>
