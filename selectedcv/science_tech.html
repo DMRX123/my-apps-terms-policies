@@ -3,67 +3,851 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sci-Tech</title>
+    <title>Science & Technology | Competitive Exams</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { background: black; color: #00f3ff; font-family: 'Courier New', Courier, monospace; overflow-x: hidden; margin: 0; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        .hero { height: 40vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        body {
+            background: linear-gradient(135deg, #0a192f 0%, #1a1a2e 100%);
+            color: #e6f1ff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
         
-        /* 3D Atom */
-        .atom { position: relative; width: 100px; height: 100px; transform-style: preserve-3d; animation: rotate 10s infinite linear; }
-        .core { position: absolute; width: 20px; height: 20px; background: white; border-radius: 50%; top: 40px; left: 40px; box-shadow: 0 0 20px white; }
-        .orbit { position: absolute; width: 100%; height: 100%; border: 2px solid #00f3ff; border-radius: 50%; transform-style: preserve-3d; }
-        .orbit:nth-child(1) { transform: rotateY(0deg); }
-        .orbit:nth-child(2) { transform: rotateY(60deg); }
-        .orbit:nth-child(3) { transform: rotateY(120deg); }
+        .science-header {
+            background: linear-gradient(135deg, #0a192f, #112240);
+            color: #64ffda;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(10, 25, 47, 0.5);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid #233554;
+        }
         
-        @keyframes rotate { 0% { transform: rotateX(60deg) rotateY(0deg); } 100% { transform: rotateX(60deg) rotateY(360deg); } }
+        .header-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #64ffda, #57cbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+        }
         
-        .content { padding: 20px; background: rgba(20,20,20,0.9); border-top: 2px solid #00f3ff; min-height: 60vh; border-radius: 30px 30px 0 0; position: relative; top: -20px; box-shadow: 0 -10px 30px rgba(0, 243, 255, 0.2); }
+        .header-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            color: #a8b2d1;
+        }
         
-        h1 { text-align: center; text-transform: uppercase; letter-spacing: 5px; text-shadow: 0 0 10px #00f3ff; }
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #64ffda, #57cbff);
+            color: #0a192f;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 4px 20px rgba(100, 255, 218, 0.3);
+        }
         
-        .tech-item { margin-bottom: 30px; border-left: 3px solid #00f3ff; padding-left: 15px; position: relative; }
-        .tech-item::before { content: ''; position: absolute; left: -9px; top: 0; width: 15px; height: 15px; background: black; border: 2px solid #00f3ff; border-radius: 50%; }
+        .container {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
         
-        h3 { color: white; margin: 0 0 5px 0; }
-        p { color: #aaa; font-size: 0.9rem; line-height: 1.5; }
+        .tech-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
         
-        .btn-glitch { border: 1px solid #00f3ff; color: #00f3ff; padding: 10px 20px; background: transparent; text-transform: uppercase; cursor: pointer; display: block; margin: 30px auto; transition: 0.2s; }
-        .btn-glitch:hover { background: #00f3ff; color: black; box-shadow: 0 0 20px #00f3ff; }
+        @media (max-width: 992px) {
+            .tech-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .featured-tech {
+            background: rgba(17, 34, 64, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #233554;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tech-categories {
+            background: rgba(17, 34, 64, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #233554;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #64ffda;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #64ffda, #57cbff);
+        }
+        
+        .tech-card {
+            background: rgba(35, 53, 84, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #233554;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+            border-color: #64ffda;
+            box-shadow: 0 10px 25px rgba(100, 255, 218, 0.2);
+        }
+        
+        .tech-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #64ffda, #57cbff);
+        }
+        
+        .tech-name {
+            font-size: 1.4rem;
+            color: #e6f1ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tech-name i {
+            margin-right: 15px;
+            color: #64ffda;
+            font-size: 1.2rem;
+        }
+        
+        .tech-description {
+            color: #a8b2d1;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .tech-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #233554;
+        }
+        
+        .tech-status {
+            font-size: 0.9rem;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: rgba(100, 255, 218, 0.2);
+            color: #64ffda;
+        }
+        
+        .status-upcoming {
+            background: rgba(87, 203, 255, 0.2);
+            color: #57cbff;
+        }
+        
+        .exam-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .category-item {
+            background: rgba(35, 53, 84, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid #233554;
+            transition: all 0.3s ease;
+        }
+        
+        .category-item:hover {
+            transform: translateY(-5px);
+            border-color: #64ffda;
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: #64ffda;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+        }
+        
+        .category-count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #e6f1ff;
+            margin-bottom: 10px;
+        }
+        
+        .category-label {
+            color: #a8b2d1;
+            font-size: 0.95rem;
+        }
+        
+        .animation-container {
+            width: 100%;
+            height: 400px;
+            margin: 50px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid #233554;
+        }
+        
+        .tech-news {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .news-card {
+            background: rgba(17, 34, 64, 0.7);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #233554;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-10px);
+            border-color: #64ffda;
+        }
+        
+        .news-header {
+            padding: 25px;
+            background: linear-gradient(135deg, #112240, #0a192f);
+            border-bottom: 1px solid #233554;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background: rgba(100, 255, 218, 0.2);
+            color: #64ffda;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .news-title {
+            font-size: 1.4rem;
+            color: #e6f1ff;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-summary {
+            color: #a8b2d1;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        
+        .news-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid #233554;
+        }
+        
+        .concept-section {
+            background: rgba(17, 34, 64, 0.7);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #233554;
+        }
+        
+        .concept-box {
+            background: rgba(35, 53, 84, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            border-left: 5px solid #64ffda;
+        }
+        
+        .concept-title {
+            font-size: 1.4rem;
+            color: #64ffda;
+            margin-bottom: 15px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #64ffda, #57cbff);
+            color: #0a192f;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(100, 255, 218, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid #233554;
+            color: #a8b2d1;
+            font-size: 0.95rem;
+        }
+        
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .tech-news {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-
-<div class="hero">
-    <div class="atom">
-        <div class="orbit"></div>
-        <div class="orbit"></div>
-        <div class="orbit"></div>
-        <div class="core"></div>
+    <div class="science-header">
+        <h1 class="header-title"><i class="fas fa-atom"></i> Science & Technology</h1>
+        <p class="header-subtitle">Latest developments in science, space, defense, and technology for competitive examinations</p>
+        <div class="tech-badge">
+            <i class="fas fa-rocket"></i> <span id="update-count">42</span> Updates This Month
+        </div>
     </div>
-</div>
-
-<div class="content">
-    <h1>Future Tech</h1>
     
-    <div class="tech-item">
-        <h3>ISRO Gaganyaan Mission</h3>
-        <p>New testing phase completed successfully. Humanoid robot 'Vyommitra' ready for space flight simulation.</p>
+    <div class="container">
+        <div class="tech-dashboard">
+            <div class="featured-tech">
+                <h2 class="section-title">Featured Technologies</h2>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name"><i class="fas fa-satellite"></i> ISRO's Reusable Launch Vehicle</h3>
+                    <p class="tech-description">Successfully tested autonomous landing technology for RLVs, reducing satellite launch costs by 80%. Key step towards fully reusable launch vehicles.</p>
+                    <div class="tech-meta">
+                        <span class="tech-status status-active">Mission Successful</span>
+                        <span class="exam-tag">Prelims & Mains</span>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name"><i class="fas fa-brain"></i> Bharat GPT - India's AI Model</h3>
+                    <p class="tech-description">Indigenous large language model trained on Indian languages and context. Focus on healthcare, education, and governance applications.</p>
+                    <div class="tech-meta">
+                        <span class="tech-status status-active">Development Phase</span>
+                        <span class="exam-tag">GS Paper III</span>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3 class="tech-name"><i class="fas fa-shield-alt"></i> Quantum Key Distribution</h3>
+                    <p class="tech-description">DRDO successfully demonstrated quantum communication for secure defense networks. Important for cybersecurity and strategic communications.</p>
+                    <div class="tech-meta">
+                        <span class="tech-status status-active">Tested Successfully</span>
+                        <span class="exam-tag">Defense & Security</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-categories">
+                <h2 class="section-title">Technology Categories</h2>
+                
+                <div class="category-grid">
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="category-count">12</div>
+                        <div class="category-label">Space Technology</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="category-count">8</div>
+                        <div class="category-label">AI & Robotics</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="category-count">6</div>
+                        <div class="category-label">Biotechnology</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="category-count">5</div>
+                        <div class="category-label">Green Tech</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="category-count">7</div>
+                        <div class="category-label">Defense Tech</div>
+                    </div>
+                    
+                    <div class="category-item">
+                        <div class="category-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="category-count">4</div>
+                        <div class="category-label">Quantum Computing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="animation-container" id="scienceAnimation"></div>
+        
+        <div class="tech-news">
+            <div class="news-card">
+                <div class="news-header">
+                    <span class="news-category">Space Technology</span>
+                    <h3 class="news-title">Chandrayaan-4 Mission Planning</h3>
+                </div>
+                <div class="news-content">
+                    <p class="news-summary">ISRO announces plans for Chandrayaan-4, a sample return mission from Moon's surface. To be launched by 2026 with international collaboration.</p>
+                    <div class="news-footer">
+                        <span><i class="far fa-clock"></i> 3 days ago</span>
+                        <span class="exam-tag">High Importance</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-header">
+                    <span class="news-category">Healthcare</span>
+                    <h3 class="news-title">India's First mRNA Vaccine Platform</h3>
+                </div>
+                <div class="news-content">
+                    <p class="news-summary">Indigenous mRNA vaccine platform developed by Gennova for various diseases. Technology transfer to developing countries under Vaccine Maitri.</p>
+                    <div class="news-footer">
+                        <span><i class="far fa-clock"></i> 1 week ago</span>
+                        <span class="exam-tag">GS Paper II & III</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="news-card">
+                <div class="news-header">
+                    <span class="news-category">Environment</span>
+                    <h3 class="news-title">Carbon Capture Technology</h3>
+                </div>
+                <div class="news-content">
+                    <p class="news-summary">IIT Madras develops affordable carbon capture technology using novel absorbents. Can reduce carbon emissions from industries by 90%.</p>
+                    <div class="news-footer">
+                        <span><i class="far fa-clock"></i> 2 weeks ago</span>
+                        <span class="exam-tag">Environment & Tech</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="concept-section">
+            <h2 class="section-title">Important Concepts for Exams</h2>
+            
+            <div class="concept-box">
+                <h3 class="concept-title">Quantum Computing vs Classical Computing</h3>
+                <p><strong>Classical Computing:</strong> Uses bits (0 or 1). Sequential processing. Limited for complex simulations.</p>
+                <p><strong>Quantum Computing:</strong> Uses qubits (0, 1, or both simultaneously - superposition). Parallel processing. Superior for cryptography, drug discovery, optimization problems.</p>
+                <div class="exam-tag" style="display: inline-block; margin-top: 15px;">Prelims Expected</div>
+            </div>
+            
+            <div class="concept-box">
+                <h3 class="concept-title">CRISPR-Cas9 Gene Editing</h3>
+                <p><strong>What:</strong> Molecular scissors that can cut DNA at specific locations.</p>
+                <p><strong>Applications:</strong> Treat genetic disorders, develop disease-resistant crops, eliminate disease-carrying mosquitoes.</p>
+                <p><strong>Ethical Concerns:</strong> Human embryo editing, designer babies, biodiversity impact.</p>
+                <div class="exam-tag" style="display: inline-block; margin-top: 15px;">Mains Answer Writing</div>
+            </div>
+            
+            <div class="concept-box">
+                <h3 class="concept-title">Li-Fi Technology</h3>
+                <p><strong>Full Form:</strong> Light Fidelity</p>
+                <p><strong>How it works:</strong> Uses visible light communication (LED bulbs) for data transmission.</p>
+                <p><strong>Advantages over Wi-Fi:</strong> Faster (up to 100 Gbps), more secure (light doesn't penetrate walls), no electromagnetic interference.</p>
+                <p><strong>Applications:</strong> Hospitals, aircraft, underwater communication.</p>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <a href="#" class="download-btn glow">
+                <i class="fas fa-download"></i> Download Tech Updates (PDF)
+            </a>
+            <p style="margin-top: 15px; color: #a8b2d1;">Includes latest developments, concepts, and practice questions</p>
+        </div>
+        
+        <div class="footer">
+            <p>Science & Technology updates from ISRO, DRDO, CSIR, and premier research institutions • Exam-focused analysis</p>
+            <p style="margin-top: 15px;">© 2024 Competitive Exams Science & Technology. All educational content.</p>
+        </div>
     </div>
 
-    <div class="tech-item">
-        <h3>Quantum Computing</h3>
-        <p>Scientists achieve stable qubit coherence at room temperature for the first time.</p>
-    </div>
-
-    <div class="tech-item">
-        <h3>CRISPR 2.0</h3>
-        <p>New gene-editing tool approved for curing hereditary blood disorders.</p>
-    </div>
-
-    <button class="btn-glitch">Load Data stream</button>
-</div>
-
+    <script>
+        // Update count animation
+        let count = 0;
+        const countElement = document.getElementById('update-count');
+        const targetCount = 42;
+        
+        const countInterval = setInterval(() => {
+            count++;
+            countElement.textContent = count;
+            
+            if (count >= targetCount) {
+                clearInterval(countInterval);
+            }
+        }, 30);
+        
+        // 3D Science Animation
+        const animationContainer = document.getElementById('scienceAnimation');
+        
+        if (animationContainer && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0a192f);
+            const camera = new THREE.PerspectiveCamera(75, animationContainer.clientWidth / animationContainer.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(animationContainer.clientWidth, animationContainer.clientHeight);
+            renderer.setClearColor(0x0a192f, 1);
+            renderer.shadowMap.enabled = true;
+            animationContainer.appendChild(renderer.domElement);
+            
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0x64ffda, 0.3);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0x57cbff, 0.8);
+            directionalLight.position.set(10, 20, 15);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+            
+            // Add point lights for glow effect
+            const pointLight1 = new THREE.PointLight(0x64ffda, 1, 50);
+            pointLight1.position.set(10, 10, 10);
+            scene.add(pointLight1);
+            
+            const pointLight2 = new THREE.PointLight(0x57cbff, 0.8, 50);
+            pointLight2.position.set(-10, 5, -10);
+            scene.add(pointLight2);
+            
+            // Create DNA double helix
+            const dnaGroup = new THREE.Group();
+            
+            function createDNAHelix() {
+                const radius = 2;
+                const turns = 4;
+                const segments = 200;
+                const points = [];
+                
+                // Create helix path
+                for (let i = 0; i <= segments; i++) {
+                    const angle = (i / segments) * Math.PI * 2 * turns;
+                    const x = Math.cos(angle) * radius;
+                    const y = (i / segments * 10) - 5;
+                    const z = Math.sin(angle) * radius;
+                    
+                    points.push(new THREE.Vector3(x, y, z));
+                }
+                
+                // Create curve from points
+                const curve = new THREE.CatmullRomCurve3(points);
+                
+                // Create tube geometry for backbone
+                const tubeGeometry = new THREE.TubeGeometry(curve, segments, 0.1, 8, false);
+                const tubeMaterial = new THREE.MeshPhongMaterial({
+                    color: 0x64ffda,
+                    shininess: 100,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                
+                const tube = new THREE.Mesh(tubeGeometry, tubeMaterial);
+                dnaGroup.add(tube);
+                
+                // Create second helix (opposite direction)
+                const points2 = [];
+                for (let i = 0; i <= segments; i++) {
+                    const angle = (i / segments) * Math.PI * 2 * turns + Math.PI;
+                    const x = Math.cos(angle) * radius;
+                    const y = (i / segments * 10) - 5;
+                    const z = Math.sin(angle) * radius;
+                    
+                    points2.push(new THREE.Vector3(x, y, z));
+                }
+                
+                const curve2 = new THREE.CatmullRomCurve3(points2);
+                const tubeGeometry2 = new THREE.TubeGeometry(curve2, segments, 0.1, 8, false);
+                const tube2 = new THREE.Mesh(tubeGeometry2, tubeMaterial);
+                dnaGroup.add(tube2);
+                
+                // Create base pairs (rungs)
+                const basePairGeometry = new THREE.CylinderGeometry(0.05, 0.05, radius * 2, 8);
+                const basePairMaterial = new THREE.MeshPhongMaterial({
+                    color: 0x57cbff,
+                    shininess: 100
+                });
+                
+                for (let i = 0; i <= segments; i += 5) {
+                    const angle = (i / segments) * Math.PI * 2 * turns;
+                    const x1 = Math.cos(angle) * radius;
+                    const y1 = (i / segments * 10) - 5;
+                    const z1 = Math.sin(angle) * radius;
+                    
+                    const x2 = Math.cos(angle + Math.PI) * radius;
+                    const z2 = Math.sin(angle + Math.PI) * radius;
+                    
+                    const basePair = new THREE.Mesh(basePairGeometry, basePairMaterial);
+                    basePair.position.set((x1 + x2) / 2, y1, (z1 + z2) / 2);
+                    
+                    // Rotate to connect the two helices
+                    const dx = x2 - x1;
+                    const dz = z2 - z1;
+                    basePair.rotation.y = Math.atan2(dz, dx);
+                    
+                    dnaGroup.add(basePair);
+                }
+            }
+            
+            createDNAHelix();
+            scene.add(dnaGroup);
+            
+            // Create orbiting satellites
+            const satellites = [];
+            const satelliteGeometry = new THREE.BoxGeometry(0.3, 0.1, 0.3);
+            const satelliteMaterial = new THREE.MeshPhongMaterial({
+                color: 0xff6b6b,
+                shininess: 100
+            });
+            
+            for (let i = 0; i < 3; i++) {
+                const satellite = new THREE.Mesh(satelliteGeometry, satelliteMaterial);
+                
+                // Add solar panels
+                const panelGeometry = new THREE.BoxGeometry(0.8, 0.02, 0.3);
+                const panelMaterial = new THREE.MeshPhongMaterial({ color: 0x4caf50 });
+                
+                const panel1 = new THREE.Mesh(panelGeometry, panelMaterial);
+                panel1.position.x = 0.5;
+                satellite.add(panel1);
+                
+                const panel2 = new THREE.Mesh(panelGeometry, panelMaterial);
+                panel2.position.x = -0.5;
+                satellite.add(panel2);
+                
+                // Position in orbit
+                const orbitRadius = 8 + i * 1.5;
+                const angle = (i / 3) * Math.PI * 2;
+                
+                satellite.position.x = Math.cos(angle) * orbitRadius;
+                satellite.position.z = Math.sin(angle) * orbitRadius;
+                satellite.position.y = Math.random() * 4 - 2;
+                
+                satellite.orbitSpeed = 0.002 + i * 0.001;
+                satellite.orbitAngle = angle;
+                
+                scene.add(satellite);
+                satellites.push(satellite);
+            }
+            
+            // Create floating atoms/molecules
+            const atoms = [];
+            const atomColors = [0x64ffda, 0x57cbff, 0xff6b6b, 0x4caf50];
+            
+            for (let i = 0; i < 20; i++) {
+                const size = Math.random() * 0.3 + 0.1;
+                const atomGeometry = new THREE.SphereGeometry(size, 16, 16);
+                const atomMaterial = new THREE.MeshPhongMaterial({
+                    color: atomColors[Math.floor(Math.random() * atomColors.length)],
+                    shininess: 100,
+                    transparent: true,
+                    opacity: 0.7
+                });
+                
+                const atom = new THREE.Mesh(atomGeometry, atomMaterial);
+                
+                // Random position
+                atom.position.x = (Math.random() - 0.5) * 20;
+                atom.position.y = (Math.random() - 0.5) * 10;
+                atom.position.z = (Math.random() - 0.5) * 10;
+                
+                atom.velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.02,
+                    (Math.random() - 0.5) * 0.02,
+                    (Math.random() - 0.5) * 0.02
+                );
+                
+                scene.add(atom);
+                atoms.push(atom);
+            }
+            
+            camera.position.set(0, 5, 20);
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate DNA helix
+                dnaGroup.rotation.y += 0.005;
+                
+                // Animate satellites in orbit
+                satellites.forEach(satellite => {
+                    satellite.orbitAngle += satellite.orbitSpeed;
+                    satellite.position.x = Math.cos(satellite.orbitAngle) * (8 + satellites.indexOf(satellite) * 1.5);
+                    satellite.position.z = Math.sin(satellite.orbitAngle) * (8 + satellites.indexOf(satellite) * 1.5);
+                    
+                    // Rotate solar panels
+                    satellite.children[0].rotation.z = Math.sin(Date.now() * 0.001) * 0.1;
+                    satellite.children[1].rotation.z = Math.sin(Date.now() * 0.001) * 0.1;
+                });
+                
+                // Animate floating atoms
+                atoms.forEach(atom => {
+                    atom.position.add(atom.velocity);
+                    
+                    // Bounce off boundaries
+                    if (Math.abs(atom.position.x) > 10) atom.velocity.x *= -1;
+                    if (Math.abs(atom.position.y) > 5) atom.velocity.y *= -1;
+                    if (Math.abs(atom.position.z) > 10) atom.velocity.z *= -1;
+                    
+                    // Gentle rotation
+                    atom.rotation.x += 0.01;
+                    atom.rotation.y += 0.01;
+                });
+                
+                // Rotate point lights for moving glow effect
+                pointLight1.position.x = Math.cos(Date.now() * 0.001) * 15;
+                pointLight1.position.z = Math.sin(Date.now() * 0.001) * 15;
+                
+                pointLight2.position.x = Math.cos(Date.now() * 0.0008) * 12;
+                pointLight2.position.z = Math.sin(Date.now() * 0.0008) * 12;
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = animationContainer.clientWidth / animationContainer.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(animationContainer.clientWidth, animationContainer.clientHeight);
+            });
+            
+            animate();
+        }
+        
+        // Add hover effects
+        document.querySelectorAll('.tech-card, .news-card, .category-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.classList.add('glow');
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.classList.remove('glow');
+            });
+        });
+    </script>
 </body>
 </html>
