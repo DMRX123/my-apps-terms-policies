@@ -2,64 +2,787 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Monthly Magazine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Current Affairs Magazine | Exam Preparation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        body { margin: 0; background: #2c3e50; display: flex; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; overflow: hidden; }
-        
-        .scene { width: 300px; height: 400px; perspective: 1500px; }
-        
-        .book {
-            width: 100%; height: 100%; position: relative;
-            transform-style: preserve-3d; transition: transform 1s;
-            cursor: pointer;
-        }
-        .scene:hover .book { transform: rotateY(-180deg) translateX(50px); }
-        /* Mobile tap support would require JS toggling a class, but hover works for desktop simulation */
-
-        .face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 5px 15px 15px 5px; box-shadow: 5px 5px 15px rgba(0,0,0,0.3); }
-        
-        .front {
-            background: url('https://source.unsplash.com/random/600x800/?fashion') center/cover;
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; box-sizing: border-box;
-            color: white; z-index: 2;
-        }
-        .front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); border-radius: 5px 15px 15px 5px; }
-        
-        .back {
-            background: #fff; transform: rotateY(180deg); z-index: 1;
-            padding: 30px; box-sizing: border-box; display: flex; flex-direction: column;
-            border-left: 5px solid #eee;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Merriweather', 'Times New Roman', serif;
         }
         
-        .title { position: relative; z-index: 10; font-size: 3rem; font-weight: bold; line-height: 0.9; margin-bottom: 10px; font-family: 'Times New Roman', serif; }
-        .subtitle { position: relative; z-index: 10; font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
+        body {
+            background: linear-gradient(135deg, #fff9f9 0%, #f0f0ff 100%);
+            color: #2c3e50;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
         
-        .article h3 { margin-top: 0; color: #333; font-size: 1.5rem; }
-        .article p { color: #666; font-size: 0.9rem; line-height: 1.6; }
-        .btn { margin-top: auto; padding: 10px 20px; background: #2c3e50; color: white; text-align: center; text-decoration: none; border-radius: 30px; font-weight: bold; }
+        .magazine-header {
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
         
-        /* Pages effect */
-        .pages { position: absolute; right: 5px; top: 5px; bottom: 5px; width: 10px; background: #fff; transform: translateZ(-2px); border-radius: 0 5px 5px 0; border: 1px solid #ddd; }
+        .magazine-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .magazine-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            font-style: italic;
+        }
+        
+        .month-year {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .magazine-cover {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+            align-items: start;
+        }
+        
+        @media (max-width: 992px) {
+            .magazine-cover {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .featured-article {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .featured-tag {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .featured-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-content {
+            padding: 40px;
+        }
+        
+        .featured-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .featured-excerpt {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 25px;
+        }
+        
+        .magazine-toc {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 30px;
+        }
+        
+        .toc-title {
+            font-size: 1.8rem;
+            color: #4a00e0;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #8e2de2;
+            padding-bottom: 10px;
+        }
+        
+        .toc-item {
+            padding: 15px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .toc-item:last-child {
+            border-bottom: none;
+        }
+        
+        .toc-item-number {
+            background: #e0e7ff;
+            color: #4a00e0;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+        }
+        
+        .toc-item-content {
+            flex: 1;
+        }
+        
+        .toc-item-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .toc-item-page {
+            color: #8e2de2;
+            font-weight: 600;
+        }
+        
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 35px;
+            margin: 50px 0;
+        }
+        
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 5px solid #8e2de2;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .article-category {
+            padding: 12px 25px;
+            background: #4a00e0;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .article-content {
+            padding: 30px;
+        }
+        
+        .article-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .article-excerpt {
+            color: #555;
+            margin-bottom: 25px;
+        }
+        
+        .exam-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .exam-tag {
+            background: #e0e7ff;
+            color: #4a00e0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .in-depth-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: #4a00e0;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: #ff6b6b;
+        }
+        
+        .editorial-box {
+            background: #f8f9ff;
+            border-left: 5px solid #4a00e0;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .editorial-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .animation-container {
+            width: 100%;
+            height: 300px;
+            margin: 50px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(142, 45, 226, 0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        .download-btn i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid #ddd;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .page-number {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4a00e0;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(74, 0, 224, 0.4);
+            z-index: 100;
+        }
+        
+        @media (max-width: 768px) {
+            .magazine-title {
+                font-size: 2.2rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-number {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div style="position: absolute; top: 50px; color: white; opacity: 0.7;">Tap cover to open</div>
-    <div class="scene">
-        <div class="book">
-            <div class="face front">
-                <div class="subtitle">January 2026</div>
-                <div class="title">VISION<br>INDIA</div>
-            </div>
-            <div class="face back">
-                <div class="article">
-                    <h3>Editor's Note</h3>
-                    <p>Welcome to this month's special edition focusing on sustainable development and rural innovation. We explore how villages are transforming...</p>
-                    <a href="#" class="btn">Read Full Issue</a>
-                </div>
-            </div>
-            <div class="pages"></div>
+    <div class="magazine-header">
+        <h1 class="magazine-title">Current Affairs Chronicle</h1>
+        <p class="magazine-subtitle">Comprehensive Monthly Analysis for Civil Services Examination Preparation</p>
+        <div class="month-year">
+            <i class="far fa-calendar-alt"></i> <span id="current-month-year"></span>
         </div>
     </div>
+    
+    <div class="container">
+        <div class="magazine-cover">
+            <div class="featured-article">
+                <div class="featured-tag">COVER STORY</div>
+                <div class="featured-image" id="featuredAnimation"></div>
+                <div class="featured-content">
+                    <h2 class="featured-title">India's Strategic Shift in Foreign Policy: Analysis for GS Paper II</h2>
+                    <p class="featured-excerpt">This comprehensive analysis covers India's evolving foreign policy stance in the context of changing global dynamics, with special focus on relations with major powers, neighborhood policy, and multilateral engagements. Essential reading for mains answer writing.</p>
+                    
+                    <div class="exam-tags">
+                        <span class="exam-tag">UPSC GS Paper II</span>
+                        <span class="exam-tag">MPPSC GS Paper III</span>
+                        <span class="exam-tag">Essay Material</span>
+                        <span class="exam-tag">Interview Preparation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="magazine-toc">
+                <h2 class="toc-title">Contents</h2>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">1</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Editorial Analysis</div>
+                        <div>Major Newspaper Editorials</div>
+                    </div>
+                    <div class="toc-item-page">P. 4</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">2</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Polity & Governance</div>
+                        <div>Important Judgments, Bills, Policies</div>
+                    </div>
+                    <div class="toc-item-page">P. 12</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">3</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Economy & Finance</div>
+                        <div>Budget Analysis, Economic Data</div>
+                    </div>
+                    <div class="toc-item-page">P. 24</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">4</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">International Relations</div>
+                        <div>Bilateral & Multilateral Developments</div>
+                    </div>
+                    <div class="toc-item-page">P. 35</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">5</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Science & Technology</div>
+                        <div>ISRO, DRDO, Health, Environment</div>
+                    </div>
+                    <div class="toc-item-page">P. 42</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">6</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Environment & Ecology</div>
+                        <div>Climate Change, Biodiversity</div>
+                    </div>
+                    <div class="toc-item-page">P. 51</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">7</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Practice Questions</div>
+                        <div>Prelims & Mains Practice</div>
+                    </div>
+                    <div class="toc-item-page">P. 58</div>
+                </div>
+                
+                <div class="toc-item">
+                    <div class="toc-item-number">8</div>
+                    <div class="toc-item-content">
+                        <div class="toc-item-title">Answer Writing Guide</div>
+                        <div>Model Answers & Framework</div>
+                    </div>
+                    <div class="toc-item-page">P. 65</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="animation-container" id="mainAnimation"></div>
+        
+        <h2 class="section-title">In-Depth Analysis</h2>
+        
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-category">Editorial Analysis</div>
+                <div class="article-content">
+                    <h3 class="article-title">The Hindu: Climate Justice and Developing Nations</h3>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 12 min read</span>
+                        <span><i class="fas fa-star"></i> High Importance</span>
+                    </div>
+                    <p class="article-excerpt">Analysis of The Hindu editorial on climate justice, loss and damage fund, and implications for India's climate policy. Includes key arguments, data points, and answer writing points.</p>
+                    <div class="exam-tags">
+                        <span class="exam-tag">GS Paper III</span>
+                        <span class="exam-tag">Essay Topic</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-category">Polity & Governance</div>
+                <div class="article-content">
+                    <h3 class="article-title">Supreme Court on Electoral Bonds: Constitutional Implications</h3>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 15 min read</span>
+                        <span><i class="fas fa-star"></i> Very High</span>
+                    </div>
+                    <p class="article-excerpt">Detailed analysis of Supreme Court judgment on electoral bonds, covering right to privacy, transparency in political funding, and implications for democracy.</p>
+                    <div class="exam-tags">
+                        <span class="exam-tag">GS Paper II</span>
+                        <span class="exam-tag">Polity</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="article-card">
+                <div class="article-category">Economy & Finance</div>
+                <div class="article-content">
+                    <h3 class="article-title">Fiscal Consolidation Roadmap: Analysis of Union Budget</h3>
+                    <div class="article-meta">
+                        <span><i class="far fa-clock"></i> 18 min read</span>
+                        <span><i class="fas fa-star"></i> Very High</span>
+                    </div>
+                    <p class="article-excerpt">Comprehensive analysis of fiscal deficit targets, capital expenditure trends, and revenue projections in the Union Budget with focus on FRBM Act compliance.</p>
+                    <div class="exam-tags">
+                        <span class="exam-tag">GS Paper III</span>
+                        <span class="exam-tag">Economy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="in-depth-section">
+            <h2 class="section-title">Special Editorial</h2>
+            <div class="editorial-box">
+                <h3 class="editorial-title">Technology and Governance: The Digital India Revolution</h3>
+                <p>This editorial examines how digital technologies are transforming governance in India, focusing on DBT, Aadhaar, UPI, and emerging technologies like AI in public service delivery. The analysis covers benefits, challenges, and future roadmap with special reference to good governance and inclusive development.</p>
+                
+                <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px;">
+                    <h4 style="color: #4a00e0; margin-bottom: 15px;">Key Concepts for Answer Writing:</h4>
+                    <ul style="columns: 2; column-gap: 40px;">
+                        <li>Digital Public Infrastructure (DPI)</li>
+                        <li>Data Privacy and Protection</li>
+                        <li>Digital Divide and Inclusion</li>
+                        <li>AI in Governance</li>
+                        <li>Cyber Security Challenges</li>
+                        <li>E-Governance vs. Good Governance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download Full Magazine (PDF)
+            </a>
+            <p style="margin-top: 15px; color: #666; font-size: 0.95rem;">Includes all articles, practice questions, and answer writing guides</p>
+        </div>
+        
+        <div class="footer">
+            <p>Monthly Magazine designed for serious civil services aspirants • Comprehensive coverage • Analytical depth • Exam-oriented content</p>
+            <p style="margin-top: 15px;">© 2024 Civil Services Preparation Magazine. Volume 12, Issue 3.</p>
+        </div>
+    </div>
+    
+    <div class="page-number">1</div>
+
+    <script>
+        // Set current month and year
+        const currentDate = new Date();
+        const monthYear = currentDate.toLocaleDateString('en-US', { 
+            month: 'long', 
+            year: 'numeric' 
+        });
+        document.getElementById('current-month-year').textContent = monthYear;
+        
+        // 3D Animation for featured section
+        const featuredAnimation = document.getElementById('featuredAnimation');
+        
+        if (featuredAnimation && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, featuredAnimation.clientWidth / featuredAnimation.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(featuredAnimation.clientWidth, featuredAnimation.clientHeight);
+            renderer.setClearColor(0x000000, 0);
+            featuredAnimation.appendChild(renderer.domElement);
+            
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(10, 20, 15);
+            scene.add(directionalLight);
+            
+            // Create globe
+            const globeGeometry = new THREE.SphereGeometry(3, 32, 32);
+            const globeMaterial = new THREE.MeshPhongMaterial({
+                color: 0x4a00e0,
+                shininess: 100,
+                transparent: true,
+                opacity: 0.8,
+                wireframe: false
+            });
+            
+            const globe = new THREE.Mesh(globeGeometry, globeMaterial);
+            scene.add(globe);
+            
+            // Add rings around globe
+            const ringGeometry = new THREE.TorusGeometry(4.5, 0.1, 16, 100);
+            const ringMaterial = new THREE.MeshPhongMaterial({
+                color: 0x8e2de2,
+                shininess: 100
+            });
+            
+            const ring1 = new THREE.Mesh(ringGeometry, ringMaterial);
+            ring1.rotation.x = Math.PI / 2;
+            scene.add(ring1);
+            
+            const ring2 = new THREE.Mesh(ringGeometry, ringMaterial);
+            ring2.rotation.y = Math.PI / 2;
+            scene.add(ring2);
+            
+            // Add floating particles
+            const particles = [];
+            const particleGeometry = new THREE.SphereGeometry(0.1, 8, 8);
+            const particleMaterial = new THREE.MeshPhongMaterial({ color: 0xff6b6b });
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+                
+                // Random position on a sphere
+                const radius = 6 + Math.random() * 2;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.random() * Math.PI;
+                
+                particle.position.x = radius * Math.sin(phi) * Math.cos(theta);
+                particle.position.y = radius * Math.sin(phi) * Math.sin(theta);
+                particle.position.z = radius * Math.cos(phi);
+                
+                particle.speed = Math.random() * 0.02 + 0.005;
+                particle.originalPosition = particle.position.clone();
+                
+                scene.add(particle);
+                particles.push(particle);
+            }
+            
+            camera.position.z = 15;
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate globe
+                globe.rotation.y += 0.005;
+                
+                // Rotate rings
+                ring1.rotation.z += 0.003;
+                ring2.rotation.x += 0.003;
+                
+                // Animate particles
+                particles.forEach(particle => {
+                    particle.position.x = particle.originalPosition.x + Math.sin(Date.now() * particle.speed) * 0.5;
+                    particle.position.y = particle.originalPosition.y + Math.cos(Date.now() * particle.speed) * 0.5;
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = featuredAnimation.clientWidth / featuredAnimation.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(featuredAnimation.clientWidth, featuredAnimation.clientHeight);
+            });
+            
+            animate();
+        }
+        
+        // Main animation
+        const mainAnimation = document.getElementById('mainAnimation');
+        
+        if (mainAnimation && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, mainAnimation.clientWidth / mainAnimation.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(mainAnimation.clientWidth, mainAnimation.clientHeight);
+            renderer.setClearColor(0x000000, 0);
+            mainAnimation.appendChild(renderer.domElement);
+            
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 10, 7);
+            scene.add(directionalLight);
+            
+            // Create floating book pages
+            const pages = [];
+            const colors = [0x4a00e0, 0x8e2de2, 0x667eea, 0x764ba2];
+            
+            for (let i = 0; i < 12; i++) {
+                // Create page geometry
+                const geometry = new THREE.BoxGeometry(3, 4, 0.1);
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: colors[i % colors.length],
+                    shininess: 100,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                
+                const page = new THREE.Mesh(geometry, material);
+                
+                // Position pages in a circle
+                const radius = 8;
+                const angle = (i / 12) * Math.PI * 2;
+                
+                page.position.x = Math.cos(angle) * radius;
+                page.position.z = Math.sin(angle) * radius;
+                page.position.y = (Math.random() - 0.5) * 4;
+                
+                // Random rotation
+                page.rotation.y = angle;
+                page.rotation.x = Math.random() * 0.2;
+                page.rotation.z = Math.random() * 0.2;
+                
+                page.rotationSpeed = {
+                    y: (Math.random() - 0.5) * 0.01,
+                    x: Math.random() * 0.005,
+                    z: Math.random() * 0.005
+                };
+                
+                page.floatSpeed = Math.random() * 0.005 + 0.002;
+                page.floatDirection = Math.random() * Math.PI * 2;
+                
+                scene.add(page);
+                pages.push(page);
+            }
+            
+            camera.position.set(0, 5, 15);
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Animate pages
+                pages.forEach(page => {
+                    page.rotation.x += page.rotationSpeed.x;
+                    page.rotation.y += page.rotationSpeed.y;
+                    page.rotation.z += page.rotationSpeed.z;
+                    
+                    // Floating motion
+                    page.position.y += Math.sin(Date.now() * page.floatSpeed + page.floatDirection) * 0.02;
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = mainAnimation.clientWidth / mainAnimation.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(mainAnimation.clientWidth, mainAnimation.clientHeight);
+            });
+            
+            animate();
+        }
+        
+        // Simulate page turning
+        let currentPage = 1;
+        const pageElement = document.querySelector('.page-number');
+        
+        setInterval(() => {
+            currentPage = (currentPage % 72) + 1;
+            pageElement.textContent = currentPage;
+            pageElement.style.transform = 'scale(1.1)';
+            
+            setTimeout(() => {
+                pageElement.style.transform = 'scale(1)';
+            }, 200);
+        }, 5000);
+    </script>
 </body>
 </html>
