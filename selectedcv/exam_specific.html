@@ -3,65 +3,997 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exam Prep</title>
+    <title>Exam Specific Preparation | UPSC/MPPSC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        body { margin: 0; background: #6c5ce7; font-family: sans-serif; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        
-        h1 { color: white; font-size: 1.5rem; margin-bottom: 20px; }
-        
-        .flashcard-container { perspective: 1000px; width: 100%; max-width: 350px; height: 250px; margin-bottom: 20px; }
-        
-        .flashcard {
-            position: relative; width: 100%; height: 100%; text-align: center;
-            transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer;
-            border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        /* Click to flip class */
-        .flashcard.flipped { transform: rotateY(180deg); }
-        
-        .front, .back {
-            position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
-            display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; border-radius: 20px;
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #ecf0f1;
+            line-height: 1.6;
+            min-height: 100vh;
         }
         
-        .front { background: white; color: #333; }
-        .back { background: #ffeaa7; color: #2d3436; transform: rotateY(180deg); }
+        .exam-header {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(142, 68, 173, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
         
-        .q-label { font-size: 0.8rem; color: #6c5ce7; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
-        .question { font-size: 1.2rem; font-weight: 600; }
-        .answer { font-size: 1.1rem; }
+        .header-title {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
         
-        .btn-row { display: flex; gap: 10px; width: 100%; max-width: 350px; }
-        .btn { flex: 1; padding: 15px; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
-        .btn-no { background: #ff7675; color: white; }
-        .btn-yes { background: #55efc4; color: #2d3436; }
-
+        .header-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 20px;
+        }
+        
+        .exam-selector {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 30px;
+            border-radius: 30px;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .exam-btn {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 10px 25px;
+            margin: 0 10px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .exam-btn.active {
+            background: white;
+            color: #8e44ad;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .exam-dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        @media (max-width: 992px) {
+            .exam-dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .exam-content {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .exam-sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #9b59b6;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #9b59b6, #3498db);
+        }
+        
+        .exam-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(155, 89, 182, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #9b59b6;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: #bdc3c7;
+        }
+        
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .syllabus-card {
+            background: rgba(52, 152, 219, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .syllabus-card:hover {
+            transform: translateY(-5px);
+            border-color: #3498db;
+        }
+        
+        .paper-title {
+            font-size: 1.3rem;
+            color: #3498db;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .paper-title i {
+            margin-right: 10px;
+        }
+        
+        .topic-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .topic-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            color: #ecf0f1;
+        }
+        
+        .topic-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .weightage-badge {
+            display: inline-block;
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+        
+        .progress-container {
+            margin: 30px 0;
+        }
+        
+        .progress-item {
+            margin-bottom: 25px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            color: #ecf0f1;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9b59b6, #3498db);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+        
+        .question-practice {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .question-card {
+            background: rgba(46, 204, 113, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+        
+        .question-text {
+            font-size: 1.1rem;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option-btn:hover {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: #3498db;
+        }
+        
+        .solution-btn {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .animation-container {
+            width: 100%;
+            height: 350px;
+            margin: 50px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .study-plan {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 50px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .plan-card {
+            background: rgba(155, 89, 182, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .plan-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(155, 89, 182, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            color: #9b59b6;
+            border: 2px solid rgba(155, 89, 182, 0.3);
+        }
+        
+        .plan-title {
+            font-size: 1.3rem;
+            color: #ecf0f1;
+            margin-bottom: 15px;
+        }
+        
+        .download-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(155, 89, 182, 0.4);
+            transition: transform 0.3s ease;
+            margin: 0 10px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-5px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.95rem;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.2rem;
+            }
+            
+            .exam-btn {
+                margin: 5px;
+                display: block;
+                width: 200px;
+                margin: 10px auto;
+            }
+            
+            .syllabus-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-
-<h1>Daily GK Quiz</h1>
-
-<div class="flashcard-container" onclick="this.querySelector('.flashcard').classList.toggle('flipped')">
-    <div class="flashcard">
-        <div class="front">
-            <span class="q-label">History • Question 1</span>
-            <div class="question">Who was the first Governor-General of independent India?</div>
-            <div style="font-size:0.8rem; color:#aaa; margin-top:20px;">(Tap to see answer)</div>
-        </div>
-        <div class="back">
-            <span class="q-label">Answer</span>
-            <div class="answer">Lord Mountbatten</div>
-            <p style="font-size:0.9rem; margin-top:10px;">(C. Rajagopalachari was the first *Indian* Governor-General)</p>
+    <div class="exam-header">
+        <h1 class="header-title"><i class="fas fa-graduation-cap"></i> Exam Specific Preparation</h1>
+        <p class="header-subtitle">Tailored study material, syllabus analysis, and practice questions for UPSC, MPPSC, and other civil service examinations</p>
+        
+        <div class="exam-selector">
+            <button class="exam-btn active" data-exam="upsc">UPSC Civil Services</button>
+            <button class="exam-btn" data-exam="mppsc">MPPSC</button>
+            <button class="exam-btn" data-exam="mppcs">MPPCS</button>
         </div>
     </div>
-</div>
+    
+    <div class="container">
+        <div class="exam-dashboard">
+            <div class="exam-content" id="upsc-content">
+                <h2 class="section-title">UPSC Civil Services Examination</h2>
+                
+                <div class="exam-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Stages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">48%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">1100+</div>
+                        <div class="stat-label">Vacancies 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">9</div>
+                        <div class="stat-label">Papers (Mains)</div>
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="font-size: 1.5rem; margin-top: 40px;">Syllabus Breakdown</h3>
+                
+                <div class="syllabus-grid">
+                    <div class="syllabus-card">
+                        <h4 class="paper-title"><i class="fas fa-file-alt"></i> Prelims - GS Paper I</h4>
+                        <ul class="topic-list">
+                            <li>Current Events</li>
+                            <li>History & Culture</li>
+                            <li>Geography</li>
+                            <li>Polity & Governance</li>
+                            <li>Economic Development</li>
+                            <li>Environment & Ecology</li>
+                            <li>General Science</li>
+                        </ul>
+                        <span class="weightage-badge">100 Questions</span>
+                    </div>
+                    
+                    <div class="syllabus-card">
+                        <h4 class="paper-title"><i class="fas fa-chart-bar"></i> Mains - GS Paper II</h4>
+                        <ul class="topic-list">
+                            <li>Indian Constitution</li>
+                            <li>Governance & Polity</li>
+                            <li>Social Justice</li>
+                            <li>International Relations</li>
+                            <li>Parliament & State Legislatures</li>
+                            <li>Welfare Schemes</li>
+                        </ul>
+                        <span class="weightage-badge">250 Marks</span>
+                    </div>
+                    
+                    <div class="syllabus-card">
+                        <h4 class="paper-title"><i class="fas fa-book"></i> Optional Subject</h4>
+                        <ul class="topic-list">
+                            <li>Choose from 48 subjects</li>
+                            <li>Paper I & II</li>
+                            <li>250 marks each</li>
+                            <li>Popular: Public Admin, Sociology, Geography</li>
+                            <li>Scoring potential analysis</li>
+                        </ul>
+                        <span class="weightage-badge">500 Marks</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exam-content" id="mppsc-content" style="display: none;">
+                <h2 class="section-title">MPPSC State Service Examination</h2>
+                
+                <div class="exam-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Stages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">52%</div>
+                        <div class="stat-label">State Specific</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">283</div>
+                        <div class="stat-label">Vacancies 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">6</div>
+                        <div class="stat-label">Papers (Mains)</div>
+                    </div>
+                </div>
+                
+                <h3 class="section-title" style="font-size: 1.5rem; margin-top: 40px;">MP Specific Syllabus</h3>
+                
+                <div class="syllabus-grid">
+                    <div class="syllabus-card">
+                        <h4 class="paper-title"><i class="fas fa-landmark"></i> MP History & Culture</h4>
+                        <ul class="topic-list">
+                            <li>Ancient MP History</li>
+                            <li>Medieval Period</li>
+                            <li>Freedom Movement in MP</li>
+                            <li>Tribal Culture</li>
+                            <li>Art & Architecture</li>
+                            <li>Folk Traditions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="syllabus-card">
+                        <h4 class="paper-title"><i class="fas fa-map-marked-alt"></i> MP Geography</h4>
+                        <ul class="topic-list">
+                            <li>Physical Features</li>
+                            <li>Climate & Soils</li>
+                            <li>River Systems</li>
+                            <li>Natural Resources</li>
+                            <li>Agriculture Pattern</li>
+                            <li>Industrial Development</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="syllabus-card">
+                        <h4 class="paper-title"><i class="fas fa-balance-scale"></i> MP Polity & Economy</h4>
+                        <ul class="topic-list">
+                            <li>Governance Structure</li>
+                            <li>Local Government</li>
+                            <li>Budget & Planning</li>
+                            <li>Major Industries</li>
+                            <li>Tourism Potential</li>
+                            <li>Social Schemes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exam-sidebar">
+                <h2 class="section-title">Preparation Progress</h2>
+                
+                <div class="progress-container">
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Current Affairs</span>
+                            <span>78%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Polity & Governance</span>
+                            <span>65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Economy & Finance</span>
+                            <span>72%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Environment & Ecology</span>
+                            <span>58%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 58%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 40px;">
+                    <h3 class="section-title" style="font-size: 1.5rem;">Study Timeline</h3>
+                    <p style="color: #bdc3c7; margin-top: 15px;">Next 6 Months Plan:</p>
+                    
+                    <ul style="padding-left: 20px; color: #ecf0f1; margin-top: 15px;">
+                        <li style="margin-bottom: 10px;">📅 <strong>Month 1-2:</strong> Complete Basic Syllabus</li>
+                        <li style="margin-bottom: 10px;">📅 <strong>Month 3-4:</strong> Revision & Answer Writing</li>
+                        <li style="margin-bottom: 10px;">📅 <strong>Month 5:</strong> Mock Tests & Analysis</li>
+                        <li>📅 <strong>Month 6:</strong> Final Revision & Current Affairs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="animation-container" id="examAnimation"></div>
+        
+        <div class="question-practice">
+            <h2 class="section-title">Practice Questions</h2>
+            
+            <div class="question-card">
+                <p class="question-text">Consider the following statements regarding the Indian Constitution:</p>
+                <p class="question-text">1. It establishes a parliamentary system of government.</p>
+                <p class="question-text">2. It provides for a bicameral legislature at the centre.</p>
+                <p class="question-text">3. It declares India to be a 'Union of States'.</p>
+                <p class="question-text">Which of the statements given above is/are correct?</p>
+                
+                <div class="options-grid">
+                    <button class="option-btn">A. 1 and 2 only</button>
+                    <button class="option-btn">B. 2 and 3 only</button>
+                    <button class="option-btn">C. 1 and 3 only</button>
+                    <button class="option-btn">D. 1, 2 and 3</button>
+                </div>
+                
+                <button class="solution-btn">Show Solution</button>
+            </div>
+            
+            <div class="question-card">
+                <p class="question-text">With reference to the 'Paris Agreement' on climate change, consider the following statements:</p>
+                <p class="question-text">1. It aims to limit global temperature rise to well below 2°C above pre-industrial levels.</p>
+                <p class="question-text">2. It requires all countries to reduce greenhouse gas emissions by the same percentage.</p>
+                <p class="question-text">3. It includes provisions for climate finance from developed to developing countries.</p>
+                <p class="question-text">Which of the statements given above is/are correct?</p>
+                
+                <div class="options-grid">
+                    <button class="option-btn">A. 1 only</button>
+                    <button class="option-btn">B. 1 and 3 only</button>
+                    <button class="option-btn">C. 2 and 3 only</button>
+                    <button class="option-btn">D. 1, 2 and 3</button>
+                </div>
+                
+                <button class="solution-btn">Show Solution</button>
+            </div>
+        </div>
+        
+        <div class="study-plan">
+            <h2 class="section-title">Recommended Study Plan</h2>
+            
+            <div class="plan-grid">
+                <div class="plan-card floating">
+                    <div class="plan-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <h3 class="plan-title">Daily Routine</h3>
+                    <p style="color: #bdc3c7;">2 hrs Current Affairs, 1 hr Newspaper Analysis, 30 mins Revision</p>
+                </div>
+                
+                <div class="plan-card floating" style="animation-delay: 0.5s;">
+                    <div class="plan-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="plan-title">Weekly Goals</h3>
+                    <p style="color: #bdc3c7;">Complete 2 topics, 1 mock test, 5 essay practice, Current Affairs revision</p>
+                </div>
+                
+                <div class="plan-card floating" style="animation-delay: 1s;">
+                    <div class="plan-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="plan-title">Monthly Review</h3>
+                    <p style="color: #bdc3c7;">Assess progress, identify weak areas, adjust strategy, analyze mock tests</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <a href="#" class="download-btn">
+                <i class="fas fa-download"></i> Download UPSC Study Plan
+            </a>
+            <a href="#" class="download-btn">
+                <i class="fas fa-file-pdf"></i> Previous Year Papers
+            </a>
+            <a href="#" class="download-btn">
+                <i class="fas fa-book-open"></i> Answer Writing Guide
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Exam-specific preparation material • Updated syllabus analysis • Previous year question patterns • Personalized study plans</p>
+            <p style="margin-top: 15px;">© 2024 Civil Services Exam Preparation. All educational content.</p>
+        </div>
+    </div>
 
-<div class="btn-row">
-    <button class="btn btn-no">Hard</button>
-    <button class="btn btn-yes">Easy</button>
-</div>
-
+    <script>
+        // Exam selector functionality
+        document.querySelectorAll('.exam-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.exam-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const exam = this.getAttribute('data-exam');
+                
+                // Hide all exam contents
+                document.querySelectorAll('.exam-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                
+                // Show selected exam content
+                document.getElementById(`${exam}-content`).style.display = 'block';
+                
+                // Update animation based on exam
+                updateExamAnimation(exam);
+            });
+        });
+        
+        // Question practice functionality
+        document.querySelectorAll('.option-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove any previous selections
+                this.parentElement.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.style.background = 'rgba(255, 255, 255, 0.05)';
+                    btn.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                });
+                
+                // Highlight selected option
+                this.style.background = 'rgba(46, 204, 113, 0.3)';
+                this.style.borderColor = '#2ecc71';
+            });
+        });
+        
+        // Solution button functionality
+        document.querySelectorAll('.solution-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const questionCard = this.closest('.question-card');
+                const solutionDiv = document.createElement('div');
+                solutionDiv.className = 'solution';
+                solutionDiv.innerHTML = `
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(52, 152, 219, 0.1); border-radius: 10px; border-left: 4px solid #3498db;">
+                        <h4 style="color: #3498db; margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> Solution:</h4>
+                        <p style="color: #ecf0f1; margin-bottom: 10px;"><strong>Correct Answer:</strong> D. 1, 2 and 3</p>
+                        <p style="color: #bdc3c7; font-size: 0.95rem;">
+                            <strong>Explanation:</strong> The Indian Constitution establishes a parliamentary system (Statement 1 correct), 
+                            provides for a bicameral legislature with Lok Sabha and Rajya Sabha (Statement 2 correct), 
+                            and declares India to be a 'Union of States' in Article 1 (Statement 3 correct).
+                        </p>
+                    </div>
+                `;
+                
+                // Remove existing solution if any
+                const existingSolution = questionCard.querySelector('.solution');
+                if (existingSolution) {
+                    existingSolution.remove();
+                }
+                
+                questionCard.appendChild(solutionDiv);
+            });
+        });
+        
+        // 3D Exam Animation
+        const animationContainer = document.getElementById('examAnimation');
+        
+        if (animationContainer && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x2c3e50);
+            const camera = new THREE.PerspectiveCamera(75, animationContainer.clientWidth / animationContainer.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(animationContainer.clientWidth, animationContainer.clientHeight);
+            renderer.setClearColor(0x2c3e50, 1);
+            renderer.shadowMap.enabled = true;
+            animationContainer.appendChild(renderer.domElement);
+            
+            // Add lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0x9b59b6, 0.8);
+            directionalLight.position.set(10, 20, 15);
+            directionalLight.castShadow = true;
+            scene.add(directionalLight);
+            
+            const pointLight = new THREE.PointLight(0x3498db, 1, 50);
+            pointLight.position.set(0, 10, 0);
+            scene.add(pointLight);
+            
+            // Create exam structure
+            const examStructure = new THREE.Group();
+            
+            // Base platform
+            const baseGeometry = new THREE.BoxGeometry(20, 1, 20);
+            const baseMaterial = new THREE.MeshPhongMaterial({ color: 0x34495e });
+            const base = new THREE.Mesh(baseGeometry, baseMaterial);
+            base.position.y = -5;
+            examStructure.add(base);
+            
+            // Create pillars for different exam stages
+            const pillars = [];
+            const pillarColors = [0x9b59b6, 0x3498db, 0x2ecc71];
+            const pillarLabels = ['Prelims', 'Mains', 'Interview'];
+            
+            for (let i = 0; i < 3; i++) {
+                // Pillar
+                const pillarGeometry = new THREE.CylinderGeometry(1, 1, 8, 16);
+                const pillarMaterial = new THREE.MeshPhongMaterial({ color: pillarColors[i] });
+                const pillar = new THREE.Mesh(pillarGeometry, pillarMaterial);
+                
+                pillar.position.x = (i - 1) * 6;
+                pillar.position.y = -1;
+                
+                // Platform on top of pillar
+                const platformGeometry = new THREE.BoxGeometry(4, 0.5, 4);
+                const platformMaterial = new THREE.MeshPhongMaterial({ color: 0xecf0f1 });
+                const platform = new THREE.Mesh(platformGeometry, platformMaterial);
+                platform.position.y = 4;
+                pillar.add(platform);
+                
+                // Add label
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.width = 256;
+                canvas.height = 128;
+                
+                context.fillStyle = pillarLabels[i] === 'Prelims' ? '#9b59b6' : 
+                                  pillarLabels[i] === 'Mains' ? '#3498db' : '#2ecc71';
+                context.font = 'bold 32px Arial';
+                context.textAlign = 'center';
+                context.textBaseline = 'middle';
+                context.fillText(pillarLabels[i], 128, 64);
+                
+                const texture = new THREE.CanvasTexture(canvas);
+                const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+                const sprite = new THREE.Sprite(spriteMaterial);
+                sprite.scale.set(3, 1.5, 1);
+                sprite.position.y = 6;
+                pillar.add(sprite);
+                
+                examStructure.add(pillar);
+                pillars.push(pillar);
+            }
+            
+            // Create stairs connecting pillars
+            for (let i = 0; i < 2; i++) {
+                const stairGeometry = new THREE.BoxGeometry(6, 0.5, 1);
+                const stairMaterial = new THREE.MeshPhongMaterial({ color: 0x95a5a6 });
+                
+                for (let j = 0; j < 3; j++) {
+                    const stair = new THREE.Mesh(stairGeometry, stairMaterial);
+                    stair.position.x = i * 6 - 3;
+                    stair.position.y = j * 1.5 - 3;
+                    stair.position.z = 0;
+                    
+                    examStructure.add(stair);
+                }
+            }
+            
+            scene.add(examStructure);
+            
+            // Create floating books and documents
+            const studyMaterials = [];
+            const materialColors = [0x9b59b6, 0x3498db, 0xe74c3c, 0x2ecc71, 0xf39c12];
+            
+            for (let i = 0; i < 15; i++) {
+                // Randomly choose between book and document
+                let geometry;
+                if (Math.random() > 0.5) {
+                    // Book
+                    geometry = new THREE.BoxGeometry(1.5, 0.2, 2);
+                } else {
+                    // Document
+                    geometry = new THREE.BoxGeometry(2, 0.05, 1.5);
+                }
+                
+                const material = new THREE.MeshPhongMaterial({
+                    color: materialColors[Math.floor(Math.random() * materialColors.length)],
+                    shininess: 100
+                });
+                
+                const studyMaterial = new THREE.Mesh(geometry, material);
+                
+                // Random position above the structure
+                studyMaterial.position.x = (Math.random() - 0.5) * 30;
+                studyMaterial.position.y = Math.random() * 10 + 5;
+                studyMaterial.position.z = (Math.random() - 0.5) * 20;
+                
+                // Random rotation
+                studyMaterial.rotation.x = Math.random() * Math.PI;
+                studyMaterial.rotation.y = Math.random() * Math.PI;
+                studyMaterial.rotation.z = Math.random() * Math.PI;
+                
+                studyMaterial.floatSpeed = Math.random() * 0.005 + 0.003;
+                studyMaterial.rotationSpeed = {
+                    x: (Math.random() - 0.5) * 0.01,
+                    y: (Math.random() - 0.5) * 0.01,
+                    z: (Math.random() - 0.5) * 0.01
+                };
+                
+                scene.add(studyMaterial);
+                studyMaterials.push(studyMaterial);
+            }
+            
+            camera.position.set(0, 10, 25);
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate exam structure slowly
+                examStructure.rotation.y += 0.001;
+                
+                // Animate study materials
+                studyMaterials.forEach(material => {
+                    // Floating motion
+                    material.position.y += Math.sin(Date.now() * material.floatSpeed) * 0.02;
+                    
+                    // Rotation
+                    material.rotation.x += material.rotationSpeed.x;
+                    material.rotation.y += material.rotationSpeed.y;
+                    material.rotation.z += material.rotationSpeed.z;
+                    
+                    // Gentle orbit
+                    const angle = Math.atan2(material.position.z, material.position.x);
+                    const radius = Math.sqrt(material.position.x * material.position.x + material.position.z * material.position.z);
+                    
+                    material.position.x = Math.cos(angle + 0.0005) * radius;
+                    material.position.z = Math.sin(angle + 0.0005) * radius;
+                });
+                
+                // Move point light
+                pointLight.position.x = Math.cos(Date.now() * 0.001) * 15;
+                pointLight.position.z = Math.sin(Date.now() * 0.001) * 15;
+                
+                renderer.render(scene, camera);
+            }
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = animationContainer.clientWidth / animationContainer.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(animationContainer.clientWidth, animationContainer.clientHeight);
+            });
+            
+            animate();
+        }
+        
+        function updateExamAnimation(examType) {
+            // This function would update the 3D animation based on selected exam
+            console.log(`Switched to ${examType} preparation mode`);
+        }
+        
+        // Animate progress bars on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.progress-fill').forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+    </script>
 </body>
 </html>
