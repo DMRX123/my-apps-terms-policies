@@ -1,1 +1,388 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>SUPER TRADER - Privacy Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0A0E21 0%, #1A1F35 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #FFD700;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #0A0E21;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .last-updated {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #FFD700;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: "•";
+            color: #FFD700;
+            font-size: 32px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 165, 0, 0.1));
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 4px solid #FFD700;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        li strong {
+            color: #FFD700;
+        }
+        
+        .data-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .data-item {
+            background: rgba(255, 215, 0, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .data-item .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .data-item .label {
+            color: #FFD700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .data-item .value {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .warning-box {
+            background: rgba(255, 69, 58, 0.1);
+            border: 1px solid #ff3b30;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .warning-box .icon {
+            font-size: 32px;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            margin: 30px 0;
+        }
+        
+        .contact-info {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #0A0E21;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .contact-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info a {
+            color: #0A0E21;
+            text-decoration: none;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .data-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🛡️</div>
+            <h1>SUPER TRADER</h1>
+            <div class="badge">PRIVACY POLICY</div>
+            <div class="last-updated">Last Updated: March 15, 2024</div>
+        </div>
+        
+        <div class="card">
+            <p style="font-size: 16px; margin-bottom: 15px;">Welcome to SUPER TRADER. We respect your privacy and are committed to protecting it. This Privacy Policy explains how we handle your information when you use our app.</p>
+            
+            <div class="highlight">
+                <strong>📋 Quick Summary:</strong> We are a simple webview app that provides links to NSE and BSE websites. We do NOT collect, store, or share any personal data. All trading happens directly on NSE/BSE websites.
+            </div>
+        </div>
+        
+        <h2>📊 Information We Collect</h2>
+        <div class="card">
+            <div class="data-list">
+                <div class="data-item">
+                    <div class="icon">🚫</div>
+                    <div class="label">Personal Data</div>
+                    <div class="value">None Collected</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">📱</div>
+                    <div class="label">Device Info</div>
+                    <div class="value">None Collected</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">📍</div>
+                    <div class="label">Location</div>
+                    <div class="value">None Collected</div>
+                </div>
+                <div class="data-item">
+                    <div class="icon">📷</div>
+                    <div class="label">Photos/Files</div>
+                    <div class="value">None Collected</div>
+                </div>
+            </div>
+            
+            <p><strong>✅ We DO NOT collect:</strong></p>
+            <ul>
+                <li>✅ Name, email, phone number, or any personal identifiers</li>
+                <li>✅ Device information (IMEI, MAC address, etc.)</li>
+                <li>✅ Location data</li>
+                <li>✅ Photos, contacts, or files</li>
+                <li>✅ Browsing history within the app</li>
+                <li>✅ Any trading data or credentials</li>
+            </ul>
+        </div>
+        
+        <h2>📝 How Our App Works</h2>
+        <div class="card">
+            <p>SUPER TRADER is a <strong>simple webview browser</strong> that provides easy access to:</p>
+            <ul>
+                <li>🔗 <strong>NSE Official Website</strong> - www.nseindia.com</li>
+                <li>🔗 <strong>BSE Official Website</strong> - www.bseindia.com</li>
+                <li>🔗 <strong>Premium Links</strong> - Direct links to specific NSE/BSE pages</li>
+            </ul>
+            
+            <div class="highlight">
+                <p><strong>⚙️ Technical Note:</strong> When you click any link, the app opens that website in an in-app browser (WebView). The websites themselves may set cookies or collect data according to their own privacy policies. We have no control over and are not responsible for the privacy practices of these external websites.</p>
+            </div>
+        </div>
+        
+        <h2>💎 Premium Subscription</h2>
+        <div class="card">
+            <p>For users who purchase Premium membership:</p>
+            <ul>
+                <li><strong>💳 Payments:</strong> All payments are processed securely by <strong>Google Play Store</strong>. We never see or store your payment information.</li>
+                <li><strong>🔑 Premium Status:</strong> Google Play sends us only your purchase confirmation (receipt) to verify Premium access. We do not store any personal payment details.</li>
+                <li><strong>🔄 Auto-renewal:</strong> Subscriptions auto-renew through Google Play. You can manage or cancel anytime in your Google Play account settings.</li>
+            </ul>
+            
+            <div class="warning-box">
+                <div class="icon">💰</div>
+                <div>
+                    <strong>Payment Security:</strong> All transactions are handled by Google Play's secure payment system. We never have access to your credit card, UPI, or bank details.
+                </div>
+            </div>
+        </div>
+        
+        <h2>📢 Advertisements</h2>
+        <div class="card">
+            <p>Free version of SUPER TRADER shows advertisements:</p>
+            <ul>
+                <li><strong>Google AdMob:</strong> We use Google AdMob to show ads. AdMob may collect anonymous usage data to serve relevant ads. This data is governed by Google's Privacy Policy.</li>
+                <li><strong>No Personal Data Sharing:</strong> We do not share any personal information with advertisers because we don't collect any.</li>
+                <li><strong>Premium = No Ads:</strong> Premium subscribers enjoy an ad-free experience.</li>
+            </ul>
+            <p style="margin-top: 15px; font-size: 14px; color: rgba(255,255,255,0.5);">📖 Learn more: <a href="https://policies.google.com/privacy" style="color: #FFD700;">Google Privacy Policy</a></p>
+        </div>
+        
+        <h2>🔒 Data Security</h2>
+        <div class="card">
+            <ul>
+                <li><strong>No Data Storage:</strong> Since we don't collect data, there's nothing to secure or risk being leaked.</li>
+                <li><strong>WebView Security:</strong> All NSE/BSE links use HTTPS (secure connection).</li>
+                <li><strong>No Tracking:</strong> We do not use analytics, trackers, or monitoring tools.</li>
+            </ul>
+        </div>
+        
+        <h2>⚠️ Important Disclaimers</h2>
+        <div class="card">
+            <div class="warning-box">
+                <div class="icon">⚖️</div>
+                <div>
+                    <strong>Unofficial App:</strong> SUPER TRADER is an independent, unofficial app. We are NOT affiliated with, endorsed by, or connected to NSE (National Stock Exchange) or BSE (Bombay Stock Exchange).
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <div class="icon">📉</div>
+                <div>
+                    <strong>No Investment Advice:</strong> We do NOT provide any stock tips, trading advice, or recommendations. All trading decisions are solely your responsibility.
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <div class="icon">🔗</div>
+                <div>
+                    <strong>Third-Party Links:</strong> Our app contains links to external websites (NSE, BSE). We are not responsible for their content, privacy practices, or accuracy.
+                </div>
+            </div>
+        </div>
+        
+        <h2>👶 Children's Privacy</h2>
+        <div class="card">
+            <p>Our app is not intended for users under 18 years of age. We do not knowingly collect any information from children.</p>
+        </div>
+        
+        <h2>🔄 Changes to This Policy</h2>
+        <div class="card">
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy here with an updated "Last Updated" date.</p>
+        </div>
+        
+        <h2>📞 Contact Us</h2>
+        <div class="contact-info">
+            <h3>Have Questions? We're Here to Help!</h3>
+            <p>📧 Email: <a href="mailto:privacy@supertrader.app">privacy@supertrader.app</a></p>
+            <p>⏱️ Response Time: Within 48 hours</p>
+            <a href="mailto:privacy@supertrader.app">Send Email →</a>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="footer">
+            <p>© 2024 SUPER TRADER. All rights reserved.</p>
+            <p>This app is for informational purposes only. No investment advice provided.</p>
+            <p style="margin-top: 10px;">Made with ❤️ for Indian Traders</p>
+        </div>
+    </div>
+</body>
+</html>
