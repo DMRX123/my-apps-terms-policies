@@ -1,1 +1,470 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>SUPER TRADER - Terms of Use</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0A0E21 0%, #1A1F35 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(76, 175, 80, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(76, 175, 80, 0.3);
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #4CAF50;
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .last-updated {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #4CAF50;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        h2::before {
+            content: "📌";
+            font-size: 24px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(76, 175, 80, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(76, 175, 80, 0.3);
+        }
+        
+        .agreement-box {
+            background: linear-gradient(45deg, rgba(76, 175, 80, 0.1), rgba(0, 150, 136, 0.1));
+            padding: 25px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 2px solid #4CAF50;
+            text-align: center;
+        }
+        
+        .agreement-box h3 {
+            color: #4CAF50;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: rgba(255, 193, 7, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+            margin: 15px 0;
+        }
+        
+        li {
+            margin: 10px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        li strong {
+            color: #4CAF50;
+        }
+        
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .term-item {
+            background: rgba(76, 175, 80, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .term-item .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .term-item h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        
+        .warning-box {
+            background: rgba(255, 69, 58, 0.1);
+            border: 1px solid #ff3b30;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .warning-box .icon {
+            font-size: 32px;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #4CAF50, transparent);
+            margin: 30px 0;
+        }
+        
+        .contact-info {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .accept-btn {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .accept-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            .terms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">📜</div>
+            <h1>SUPER TRADER</h1>
+            <div class="badge">TERMS OF USE</div>
+            <div class="last-updated">Last Updated: March 15, 2024</div>
+        </div>
+        
+        <div class="agreement-box">
+            <h3>📋 PLEASE READ CAREFULLY</h3>
+            <p>By downloading, installing, or using SUPER TRADER, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use this app.</p>
+        </div>
+        
+        <h2>1️⃣ Acceptance of Terms</h2>
+        <div class="card">
+            <p>SUPER TRADER ("we," "our," or "us") provides this app subject to your acceptance of all terms, conditions, and notices contained or referenced herein.</p>
+            
+            <div class="highlight">
+                <strong>⚠️ Important:</strong> These terms affect your legal rights. By using the app, you confirm that you are at least 18 years old and legally capable of entering into binding contracts.
+            </div>
+        </div>
+        
+        <h2>2️⃣ App Description & Services</h2>
+        <div class="card">
+            <p>SUPER TRADER is a <strong>webview browser application</strong> that provides:</p>
+            <ul>
+                <li>🔗 Direct links to <strong>NSE (www.nseindia.com)</strong> official website</li>
+                <li>🔗 Direct links to <strong>BSE (www.bseindia.com)</strong> official website</li>
+                <li>🔗 Premium links to specific NSE/BSE pages for easier access</li>
+                <li>🖥️ Desktop view mode for better visualization</li>
+            </ul>
+            
+            <p><strong>What we DO NOT do:</strong></p>
+            <ul>
+                <li>🚫 We do NOT provide stock recommendations or trading advice</li>
+                <li>🚫 We do NOT execute trades on your behalf</li>
+                <li>🚫 We do NOT store or analyze your trading data</li>
+                <li>🚫 We are NOT a stock broker or financial advisor</li>
+            </ul>
+        </div>
+        
+        <h2>3️⃣ Premium Subscription</h2>
+        <div class="card">
+            <div class="terms-grid">
+                <div class="term-item">
+                    <div class="icon">💰</div>
+                    <h4>Pricing</h4>
+                    <p>• Monthly: ₹29/month<br>• Yearly: ₹199/year (43% savings)</p>
+                </div>
+                <div class="term-item">
+                    <div class="icon">🔄</div>
+                    <h4>Auto-Renewal</h4>
+                    <p>Subscriptions auto-renew unless cancelled 24 hours before period ends</p>
+                </div>
+                <div class="term-item">
+                    <div class="icon">⚙️</div>
+                    <h4>Management</h4>
+                    <p>Manage/cancel via Google Play Store > Subscriptions</p>
+                </div>
+                <div class="term-item">
+                    <div class="icon">🎁</div>
+                    <h4>Premium Benefits</h4>
+                    <p>• 35+ advanced links<br>• No advertisements<br>• Priority updates</p>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <div class="icon">💳</div>
+                <div>
+                    <strong>Payment Processing:</strong> All payments are handled exclusively by Google Play Store. We never have access to your payment details (credit card, UPI, etc.).
+                </div>
+            </div>
+        </div>
+        
+        <h2>4️⃣ Refund Policy</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Google Play Handle All Refunds:</strong> Since payments are processed by Google, all refund requests must be directed to Google Play Support.</li>
+                <li><strong>No Refunds for Partial Periods:</strong> Subscription fees are non-refundable for partial months/years.</li>
+                <li><strong>Cancellation:</strong> You can cancel anytime, but no refund for the current billing period.</li>
+            </ul>
+            <p style="margin-top: 15px;">🔗 <a href="https://support.google.com/googleplay/answer/2479637" style="color: #4CAF50;">Google Play Refund Policy</a></p>
+        </div>
+        
+        <h2>5️⃣ User Responsibilities</h2>
+        <div class="card">
+            <p>By using SUPER TRADER, you agree that:</p>
+            <ul>
+                <li><strong>📊 Trading Risk:</strong> All trading and investment decisions are solely your responsibility. We are not liable for any financial losses.</li>
+                <li><strong>🔐 Account Security:</strong> You are responsible for maintaining the security of your device and any accounts on NSE/BSE websites.</li>
+                <li><strong>🚫 Prohibited Use:</strong> You will not use this app for any illegal purposes or to violate any laws.</li>
+                <li><strong>🤖 No Automated Access:</strong> You will not use bots, scrapers, or automated systems to access the app.</li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>📢 Remember:</strong> NSE and BSE are regulated by SEBI. All trading activities on their websites are governed by their terms and SEBI regulations.
+            </div>
+        </div>
+        
+        <h2>6️⃣ Intellectual Property</h2>
+        <div class="card">
+            <ul>
+                <li><strong>App Content:</strong> The SUPER TRADER code, design, and branding are our property.</li>
+                <li><strong>NSE/BSE Content:</strong> All data, charts, and information displayed via webview belong to NSE/BSE respectively and are subject to their copyright.</li>
+                <li><strong>No Copying:</strong> You may not copy, modify, or distribute any part of this app without permission.</li>
+            </ul>
+        </div>
+        
+        <h2>7️⃣ Third-Party Links & Websites</h2>
+        <div class="card">
+            <p>SUPER TRADER provides links to:</p>
+            <ul>
+                <li><strong>NSE India:</strong> www.nseindia.com</li>
+                <li><strong>BSE India:</strong> www.bseindia.com</li>
+            </ul>
+            <p><strong>We are not responsible for:</strong></p>
+            <ul>
+                <li>❌ Content, accuracy, or reliability of these websites</li>
+                <li>❌ Their privacy practices or data collection</li>
+                <li>❌ Any issues arising from your use of these sites</li>
+                <li>❌ Technical errors on NSE/BSE websites</li>
+            </ul>
+            <p>Please review NSE and BSE's own terms and policies before using their services.</p>
+        </div>
+        
+        <h2>8️⃣ Disclaimer of Warranties</h2>
+        <div class="card">
+            <div class="warning-box">
+                <div class="icon">⚠️</div>
+                <div>
+                    <strong>AS-IS BASIS:</strong> THE APP IS PROVIDED "AS IS" WITHOUT ANY WARRANTIES, EXPRESS OR IMPLIED. WE DO NOT GUARANTEE THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE.
+                </div>
+            </div>
+            
+            <ul>
+                <li><strong>No Financial Advice:</strong> We are not SEBI registered. Nothing in this app constitutes financial advice.</li>
+                <li><strong>Market Risk:</strong> Stock market investments are subject to market risks. Read all documents carefully.</li>
+                <li><strong>Technical Issues:</strong> We are not liable for downtime, bugs, or technical issues beyond our control.</li>
+            </ul>
+        </div>
+        
+        <h2>9️⃣ Limitation of Liability</h2>
+        <div class="card">
+            <p>To the maximum extent permitted by law, SUPER TRADER and its developers shall not be liable for:</p>
+            <ul>
+                <li>📉 Any trading losses or financial damages</li>
+                <li>⚡ Indirect, incidental, or consequential damages</li>
+                <li>🔒 Data loss or unauthorized access to your device</li>
+                <li>💲 Loss of profits or business interruption</li>
+                <li>🌐 Issues caused by NSE/BSE websites or third parties</li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>⚖️ Total Liability:</strong> Our total liability shall not exceed the amount you paid for the app (if any) in the past 12 months.
+            </div>
+        </div>
+        
+        <h2>🔟 Termination</h2>
+        <div class="card">
+            <p>We may terminate or suspend your access to the app immediately, without prior notice, for:</p>
+            <ul>
+                <li>🚫 Violation of these Terms</li>
+                <li>🚫 Illegal or fraudulent activities</li>
+                <li>🚫 Technical security reasons</li>
+            </ul>
+            <p>You may stop using the app at any time by uninstalling it.</p>
+        </div>
+        
+        <h2>1️⃣1️⃣ Changes to Terms</h2>
+        <div class="card">
+            <p>We reserve the right to modify these Terms at any time. We will notify you of material changes by:</p>
+            <ul>
+                <li>📧 In-app notification</li>
+                <li>📝 Updating the "Last Updated" date</li>
+            </ul>
+            <p>Continued use of the app after changes constitutes acceptance of the new Terms.</p>
+        </div>
+        
+        <h2>1️⃣2️⃣ Governing Law</h2>
+        <div class="card">
+            <p>These Terms shall be governed by the laws of India. Any disputes arising from these Terms shall be subject to the exclusive jurisdiction of the courts in [Your City], India.</p>
+        </div>
+        
+        <h2>📞 Contact Us</h2>
+        <div class="contact-info">
+            <h3>Questions About These Terms?</h3>
+            <p>📧 Email: <a href="mailto:legal@supertrader.app">legal@supertrader.app</a></p>
+            <p>⏱️ Response Time: 24-48 hours</p>
+            <a href="mailto:legal@supertrader.app">Contact Legal Team →</a>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="accept-btn" onclick="alert('Thank you for accepting our Terms of Use. Happy Trading!')">✓ I ACCEPT THESE TERMS</button>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="footer">
+            <p>© 2024 SUPER TRADER. All rights reserved.</p>
+            <p>This app is for informational purposes only. No investment advice provided.</p>
+            <p>Trading in stock markets involves risk. Please consult your financial advisor.</p>
+            <p style="margin-top: 10px;">Made with ❤️ for Indian Traders 🇮🇳</p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-update year in footer
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElements = document.querySelectorAll('.footer p:first-child');
+            const currentYear = new Date().getFullYear();
+            yearElements.forEach(el => {
+                el.innerHTML = el.innerHTML.replace('2024', currentYear);
+            });
+        });
+    </script>
+</body>
+</html>
