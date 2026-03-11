@@ -1,63 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SUPER TRADER - Terms of Use</title>
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-font-family: Arial, sans-serif;
-background:#0A0E21;
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto;
+background:linear-gradient(135deg,#0A0E21,#1A1F35);
 color:white;
-line-height:1.6;
 padding:20px;
 }
 
 .container{
-max-width:850px;
+max-width:900px;
 margin:auto;
-background:#14192e;
+background:rgba(255,255,255,0.05);
 padding:30px;
 border-radius:20px;
+border:1px solid rgba(255,215,0,0.1);
+}
+
+.header{
+text-align:center;
+margin-bottom:25px;
+position:relative;
+}
+
+.lang-btn{
+position:absolute;
+right:0;
+top:0;
+background:#FFD700;
+border:none;
+padding:8px 15px;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
 }
 
 h1{
-color:#4CAF50;
+color:#FFD700;
+margin-bottom:10px;
 }
 
-h2{
-color:#4CAF50;
-margin-top:30px;
+.badge{
+background:#FFD700;
+color:black;
+padding:6px 15px;
+border-radius:20px;
+font-weight:bold;
+display:inline-block;
+}
+
+.last-updated{
+opacity:.7;
+margin-top:8px;
 }
 
 .card{
-background:#1d233b;
+background:rgba(255,255,255,0.03);
 padding:20px;
-border-radius:12px;
-margin-bottom:20px;
+border-radius:14px;
+margin-top:20px;
+border:1px solid rgba(255,215,0,0.1);
 }
 
 .highlight{
-background:#2d2a17;
+background:rgba(255,215,0,0.1);
 padding:15px;
-border-left:4px solid #ffc107;
-border-radius:8px;
+border-left:4px solid #FFD700;
+border-radius:10px;
+margin-top:15px;
 }
 
-.warning{
-background:#2b1515;
+.warning-box{
+background:rgba(255,0,0,0.1);
 padding:15px;
-border-left:4px solid red;
-border-radius:8px;
+border-radius:10px;
+border:1px solid red;
+margin-top:15px;
+}
+
+.contact-info{
+background:linear-gradient(45deg,#FFD700,#FFA500);
+color:black;
+padding:20px;
+border-radius:15px;
+text-align:center;
+margin-top:25px;
 }
 
 .footer{
 text-align:center;
-margin-top:40px;
-font-size:14px;
-color:#ccc;
+margin-top:25px;
+opacity:.6;
+font-size:13px;
+}
+
+h2{
+color:#FFD700;
+margin-bottom:10px;
 }
 
 ul{
@@ -72,330 +125,230 @@ margin-left:20px;
 
 <div class="container">
 
-<h1>📜 SUPER TRADER</h1>
-<p><strong>TERMS OF USE / उपयोग की शर्तें</strong></p>
-<p>Last Updated: March 15, 2026</p>
+<div class="header">
 
-<div class="highlight">
+<button class="lang-btn" onclick="toggleLang()">हिंदी</button>
 
-<b>English</b><br>
-By downloading or using the SUPER TRADER application, you agree to these Terms of Use.
+<h1>SUPER TRADER</h1>
 
-<br><br>
+<div class="badge lang"
+data-en="Terms of Use"
+data-hi="उपयोग की शर्तें">
+Terms of Use
+</div>
 
-<b>हिंदी</b><br>
-SUPER TRADER ऐप को डाउनलोड या उपयोग करने पर आप इन उपयोग की शर्तों से सहमत माने जाएंगे।
+<div class="last-updated">Last Updated: March 15, 2026</div>
 
 </div>
 
-<h2>1️⃣ Acceptance of Terms / शर्तों की स्वीकृति</h2>
 
 <div class="card">
 
-<b>English</b>
-
-<p>
-SUPER TRADER ("we", "our", "us") provides this application subject to your acceptance of these terms.
+<p class="lang"
+data-en="Welcome to SUPER TRADER. By installing or using this application you agree to the following terms."
+data-hi="SUPER TRADER में आपका स्वागत है। इस ऐप को इंस्टॉल या उपयोग करके आप निम्नलिखित शर्तों से सहमत होते हैं।">
+Welcome to SUPER TRADER. By installing or using this application you agree to the following terms.
 </p>
 
-<p>
-By using this app you confirm that:
-</p>
-
-<ul>
-<li>You are at least 18 years old</li>
-<li>You are legally capable of entering agreements</li>
-</ul>
-
-<br>
-
-<b>हिंदी</b>
-
-<p>
-SUPER TRADER यह ऐप इन शर्तों के आधार पर प्रदान करता है।
-</p>
-
-<ul>
-<li>आपकी आयु कम से कम 18 वर्ष है</li>
-<li>आप कानूनी रूप से समझौता करने में सक्षम हैं</li>
-</ul>
+<div class="highlight lang"
+data-en="Quick Summary: SUPER TRADER is a simple webview utility app that provides quick access links to official stock exchange websites such as NSE and BSE."
+data-hi="संक्षेप: SUPER TRADER एक WebView आधारित utility ऐप है जो NSE और BSE जैसी आधिकारिक वेबसाइटों तक त्वरित पहुँच प्रदान करता है।">
+Quick Summary
+</div>
 
 </div>
 
-<h2>2️⃣ App Description / ऐप का विवरण</h2>
 
 <div class="card">
 
-<b>English</b>
+<h2 class="lang"
+data-en="Use of the App"
+data-hi="ऐप का उपयोग">
+Use of the App
+</h2>
 
-<p>
-SUPER TRADER is a webview utility browser application that provides quick access links to official stock exchange websites.
-</p>
-
-<ul>
-<li>Direct links to NSE website</li>
-<li>Direct links to BSE website</li>
-<li>Quick access to option chain and market pages</li>
-<li>Desktop browsing experience</li>
-</ul>
-
-<p>
-The app does NOT host, store or modify any stock market data.
-</p>
-
-<br>
-
-<b>हिंदी</b>
-
-<p>
-SUPER TRADER एक webview आधारित utility app है जो stock exchange websites तक जल्दी पहुंचने के लिए direct links देता है।
-</p>
-
-<ul>
-<li>NSE वेबसाइट के direct links</li>
-<li>BSE वेबसाइट के direct links</li>
-<li>Option chain और market pages के quick links</li>
-<li>Desktop view browsing</li>
-</ul>
-
-<p>
-यह ऐप कोई भी stock market data store या modify नहीं करता।
+<p class="lang"
+data-en="SUPER TRADER acts as a simple browser that opens publicly available financial websites."
+data-hi="SUPER TRADER एक साधारण ब्राउज़र की तरह काम करता है जो सार्वजनिक रूप से उपलब्ध वित्तीय वेबसाइटें खोलता है।">
 </p>
 
 </div>
 
-<h2>3️⃣ Independent App Disclaimer</h2>
 
 <div class="card">
 
-<b>English</b>
+<h2 class="lang"
+data-en="Independent Application"
+data-hi="स्वतंत्र एप्लिकेशन">
+</h2>
 
-<p>
-SUPER TRADER is an independent application and is NOT affiliated with, endorsed by, or officially connected with:
-</p>
-
-<ul>
-<li>National Stock Exchange of India (NSE)</li>
-<li>BSE Limited</li>
-</ul>
-
-<p>
-All trademarks, website content and market data belong to their respective owners.
-</p>
-
-<br>
-
-<b>हिंदी</b>
-
-<p>
-SUPER TRADER एक स्वतंत्र ऐप है और इसका NSE या BSE से कोई आधिकारिक संबंध नहीं है।
-</p>
-
-<p>
-सभी डेटा और ट्रेडमार्क उनके मालिकों की संपत्ति हैं।
+<p class="lang"
+data-en="SUPER TRADER is an independent application and is not affiliated with NSE or BSE."
+data-hi="SUPER TRADER एक स्वतंत्र ऐप है और NSE या BSE से संबद्ध नहीं है।">
 </p>
 
 </div>
 
-<h2>4️⃣ Premium Subscription</h2>
 
 <div class="card">
 
-<b>English</b>
+<h2 class="lang"
+data-en="Premium Subscription"
+data-hi="प्रीमियम सदस्यता">
+</h2>
 
 <ul>
-<li>Monthly Plan: ₹29/month</li>
-<li>Yearly Plan: ₹199/year</li>
-</ul>
 
-<p>
-Premium users get an ad-free experience inside the app and access to advanced quick links.
-</p>
+<li class="lang"
+data-en="Monthly Plan: ₹29"
+data-hi="मासिक योजना: ₹29">
+</li>
 
-<br>
+<li class="lang"
+data-en="Yearly Plan: ₹199"
+data-hi="वार्षिक योजना: ₹199">
+</li>
 
-<b>हिंदी</b>
+<li class="lang"
+data-en="Payments are processed securely through Google Play."
+data-hi="सभी भुगतान Google Play के माध्यम से सुरक्षित रूप से संसाधित किए जाते हैं।">
+</li>
 
-<ul>
-<li>मासिक योजना: ₹29</li>
-<li>वार्षिक योजना: ₹199</li>
-</ul>
-
-<p>
-Premium उपयोगकर्ताओं को ऐप में बिना विज्ञापन अनुभव और advanced quick links मिलते हैं।
-</p>
-
-</div>
-
-<h2>5️⃣ Payment & Refund Policy</h2>
-
-<div class="card">
-
-<b>English</b>
-
-<p>
-All payments are processed through the Google Play Store billing system.
-</p>
-
-<ul>
-<li>All payments are NON-REFUNDABLE</li>
-<li>No refunds for partially used subscription periods</li>
-<li>Subscriptions can be cancelled anytime from Google Play</li>
-</ul>
-
-<br>
-
-<b>हिंदी</b>
-
-<p>
-सभी भुगतान Google Play Store के माध्यम से किए जाते हैं।
-</p>
-
-<ul>
-<li>सभी भुगतान वापस नहीं किए जाएंगे</li>
-<li>आंशिक उपयोग के लिए refund नहीं मिलेगा</li>
-<li>Subscription Google Play से कभी भी cancel किया जा सकता है</li>
 </ul>
 
 </div>
 
-<h2>6️⃣ Advertisements</h2>
 
 <div class="card">
 
-<b>English</b>
+<h2 class="lang"
+data-en="Advertisements"
+data-hi="विज्ञापन">
+</h2>
 
-<p>
-Free users may see advertisements inside the app interface.
+<p class="lang"
+data-en="The free version of the app may display advertisements inside the app interface."
+data-hi="ऐप का मुफ्त संस्करण ऐप इंटरफ़ेस में विज्ञापन दिखा सकता है।">
 </p>
 
-<p>
-Premium users receive an ad-free experience inside the app.
-</p>
-
-<p>
-However, when external websites such as NSE or BSE are opened, those websites may display their own advertisements, trading tickers, banners or market information.
-</p>
-
-<p>
-SUPER TRADER does not control these advertisements.
-</p>
-
-<br>
-
-<b>हिंदी</b>
-
-<p>
-Free users को ऐप के अंदर कुछ विज्ञापन दिख सकते हैं।
-</p>
-
-<p>
-Premium users को ऐप में बिना विज्ञापन अनुभव मिलता है।
-</p>
-
-<p>
-लेकिन जब NSE या BSE वेबसाइट खुलती है, तो उन वेबसाइटों पर उनके स्वयं के विज्ञापन, trading ticker या market data दिखाई दे सकते हैं।
-</p>
-
-<p>
-इन पर SUPER TRADER का कोई नियंत्रण नहीं है।
+<p class="lang"
+data-en="Premium users receive an ad-free experience inside the application."
+data-hi="प्रीमियम उपयोगकर्ताओं को ऐप के अंदर विज्ञापन मुक्त अनुभव मिलता है।">
 </p>
 
 </div>
 
-<h2>7️⃣ No Financial Advice</h2>
-
-<div class="warning">
-
-<b>English</b>
-
-<p>
-SUPER TRADER does not provide investment advice or trading recommendations.
-</p>
-
-<p>
-Stock market investments are subject to market risks.
-</p>
-
-<p>
-Developers of this app are not SEBI registered advisors.
-</p>
-
-<br>
-
-<b>हिंदी</b>
-
-<p>
-यह ऐप किसी भी प्रकार की निवेश सलाह या trading recommendation प्रदान नहीं करता।
-</p>
-
-<p>
-शेयर बाजार में निवेश जोखिम के अधीन होता है।
-</p>
-
-<p>
-इस ऐप के डेवलपर SEBI पंजीकृत सलाहकार नहीं हैं।
-</p>
-
-</div>
-
-<h2>8️⃣ Limitation of Liability</h2>
 
 <div class="card">
 
-<b>English</b>
+<h2 class="lang"
+data-en="Financial Disclaimer"
+data-hi="वित्तीय अस्वीकरण">
+</h2>
 
-<p>
-SUPER TRADER developers are not responsible for any financial loss, trading loss, or investment decision made using information accessed through this app.
-</p>
+<div class="warning-box lang"
+data-en="SUPER TRADER does not provide financial advice or stock recommendations."
+data-hi="SUPER TRADER कोई वित्तीय सलाह या स्टॉक सिफारिश प्रदान नहीं करता।">
+</div>
 
-<br>
-
-<b>हिंदी</b>
-
-<p>
-इस ऐप के माध्यम से प्राप्त जानकारी के आधार पर किए गए किसी भी निवेश निर्णय या वित्तीय नुकसान के लिए SUPER TRADER जिम्मेदार नहीं होगा।
-</p>
+<div class="warning-box lang"
+data-en="Stock market investments involve risk. Users should make decisions at their own discretion."
+data-hi="शेयर बाजार में निवेश जोखिम के अधीन है। उपयोगकर्ता अपने निर्णय स्वयं लें।">
+</div>
 
 </div>
 
-<h2>9️⃣ Governing Law</h2>
 
 <div class="card">
 
-<p>
-These Terms shall be governed by the laws of India. Any disputes will fall under the jurisdiction of courts in India.
-</p>
+<h2 class="lang"
+data-en="Limitation of Liability"
+data-hi="दायित्व की सीमा">
+</h2>
 
-<p>
-ये शर्तें भारत के कानूनों के अनुसार संचालित होंगी।
+<p class="lang"
+data-en="Developers of SUPER TRADER are not responsible for any trading losses or financial damages."
+data-hi="SUPER TRADER के डेवलपर्स किसी भी ट्रेडिंग नुकसान या वित्तीय क्षति के लिए जिम्मेदार नहीं हैं।">
 </p>
 
 </div>
 
-<h2>📧 Contact</h2>
 
 <div class="card">
 
-<p>Email: legal@supertrader.app</p>
+<h2 class="lang"
+data-en="Changes to Terms"
+data-hi="शर्तों में बदलाव">
+</h2>
+
+<p class="lang"
+data-en="We may update these terms from time to time."
+data-hi="हम समय-समय पर इन शर्तों को अपडेट कर सकते हैं।">
+</p>
 
 </div>
+
+
+<div class="contact-info">
+
+<h3 class="lang"
+data-en="Contact Us"
+data-hi="संपर्क करें">
+</h3>
+
+<p>legal@supertrader.app</p>
+
+<a href="mailto:legal@supertrader.app">Send Email</a>
+
+</div>
+
 
 <div class="footer">
 
-© 2026 SUPER TRADER
+<p>© 2026 SUPER TRADER</p>
 
-<br><br>
-
-This app is for informational purposes only.
-
-<br>
-
-Trading in stock markets involves risk.
+<p>This app is for informational purposes only.</p>
 
 </div>
 
 </div>
+
+
+<script>
+
+let currentLang="en";
+
+function toggleLang(){
+
+const items=document.querySelectorAll(".lang");
+
+if(currentLang==="en"){
+
+items.forEach(el=>{
+el.innerText=el.getAttribute("data-hi");
+});
+
+document.querySelector(".lang-btn").innerText="EN";
+
+currentLang="hi";
+
+}
+
+else{
+
+items.forEach(el=>{
+el.innerText=el.getAttribute("data-en");
+});
+
+document.querySelector(".lang-btn").innerText="हिंदी";
+
+currentLang="en";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
